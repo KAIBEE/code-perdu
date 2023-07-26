@@ -1,0 +1,29 @@
+{
+  "evenements(evenement[])": [{
+    "nomEvenement": "DevFest",
+    "equipes(equipe[])": [{
+      "nom": "Nom de l'équipe",
+      "description": "Description",
+      "image": "lien-image"
+    }],
+    "scenario(question[])": [
+      {
+        "id": "uuid",
+        "type": "NO_RESPONSE|RESPONSE_INPUT|RESPONSE_MULTIPLE_CHOICES",
+        "paragraphes": [
+          "paragraph1",
+          "paragraph2"
+        ],
+        "bonneReponses": [
+          "choice 1",
+          "choice 2"
+        ],
+        "prochaineQuestion": "uuid ou on prends par ordre",
+      }
+    ],
+    "indices(indices[])": [{
+      "idQuestion": "uuid",
+      "indice": "texte"
+    }]
+  }]
+}
