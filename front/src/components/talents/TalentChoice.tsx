@@ -1,21 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
-const Title = styled.h1`
-font-size: 1.5em;
-text-align: center;
-color: #FFFFFF;
-`;
-
-const Button = styled.button`
-margin: 10px;
-width: 120px;
-height: 120px;
-&:hover, &:focus, &:active {
-    background-color: #63BFBC;
-}
-`;
+import { Title } from '../styled/Title';
+import { Button } from '../styled/Button';
+import cogiImage from '../../assets/cogi.png'
+import pixelImage from '../../assets/pixel.png'
+import dataImage from '../../assets/data.png'
+import visioImage from '../../assets/visio.png'
 
 function TalentChoice() {
     const FRONT: string = 'Front';
@@ -31,13 +21,33 @@ function TalentChoice() {
     const renderHouse = () => {
         switch (choicedTalent) {
             case FRONT:
-                return navigate("/pixel")
+                return navigate("/house", {
+                    state: {
+                        houseName: "Pixelgriffes",
+                        houseImage: pixelImage
+                    }
+                })
             case BACK:
-                return navigate("/cogi")
+                return navigate("/house", {
+                    state: {
+                        houseName: "Cogitrouille",
+                        houseImage: cogiImage
+                    }
+                })
             case DEVOPS:
-                return navigate("/data")
+                return navigate("/house", {
+                    state: {
+                        houseName: "Datamage",
+                        houseImage: dataImage
+                    }
+                })
             case PRODUCT:
-                return navigate("/visio")
+                return navigate("/house", {
+                    state: {
+                        houseName: "Visiolupin",
+                        houseImage: visioImage
+                    }
+                })
             default:
                 return
         }

@@ -1,28 +1,8 @@
 import { useForm } from 'react-hook-form'
-import styled from 'styled-components'
 import artImage from '../../assets/art.jpg'
 import { useNavigate } from 'react-router-dom';
-
-const Title = styled.h1`
-font-size: 2.3em;
-text-align: center;
-color: #FFFFFF;
-`;
-
-const InputEmail = styled.input`
-width: 375px;
-padding: 10px;
-height: 16px
-border: 1px;
-border-color: #D0BCFF;
-background: transparent;
-color: white;
-&::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    height: 24px;
-    width: 24px;
-    background-image: url('./src/assets/Icon.png');
-`;
+import { BigTitle } from '../styled/BigTitle';
+import { InputEmail } from '../styled/InputEmail';
 
 function Home() {
     const {
@@ -40,9 +20,9 @@ function Home() {
     return (
         <>
             <header>
-                <Title>
+                <BigTitle>
                     Bienvenue <br /> apprenti sorcier !
-                </Title>
+                </BigTitle>
             </header>
 
             <img src={artImage} alt="Art" width={375} height={351}></img>
