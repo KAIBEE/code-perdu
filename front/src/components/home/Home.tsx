@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import artImage from '../../assets/art.jpg'
 import { useNavigate } from 'react-router-dom';
 import { BigTitle } from '../styled/BigTitle';
-import { InputEmail } from '../styled/InputEmail';
+import { InputStyled } from '../styled/InputStyled';
 
 function Home() {
     const {
@@ -29,7 +29,7 @@ function Home() {
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                    <InputEmail
+                    <InputStyled
                         placeholder='Renseigne ton adresse e-mail'
                         type="search"
                         id="email"

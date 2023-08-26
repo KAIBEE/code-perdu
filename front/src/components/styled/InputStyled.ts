@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const InputEmail = styled.input`
+export const InputStyled = styled.input`
 width: 375px;
 padding: 10px;
 height: 16px

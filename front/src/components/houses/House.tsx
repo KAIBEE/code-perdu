@@ -20,7 +20,9 @@ function House() {
             <div>
                 <img src={houseImage} alt="Art" width={200} height={233}></img>
             </div>
+            <Link to='/missionAcceptation'>
             <button className='continueButton'>Continuer</button>
+            </Link>
         </>
     )
 }
