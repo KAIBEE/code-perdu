@@ -12,4 +12,16 @@ export class ParticipantService {
         const participant = new this.participantModel(participantDTO);
         return participant.save();
     }
+
+    async getAll(): Promise<Participant[]> {
+        return this.participantModel.find().exec();
+    }
+
+    async completeCircuit(id: string) {
+        await this.participantModel.findByIdAndUpdate(id, { isCompleted: true }).exec();
+    }
+
+    async updateEmail(id: string, email: string) {
+        await this.participantModel.findByIdAndUpdate(id, { email }).exec();
+    }
 }

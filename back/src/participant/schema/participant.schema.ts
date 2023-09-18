@@ -10,6 +10,9 @@ export class Participant {
 
     @Prop()
     code: string;
+
+    @Prop()
+    isCompleted: boolean;
 }
 
 export const ParticipantSchema = SchemaFactory.createForClass(Participant);
