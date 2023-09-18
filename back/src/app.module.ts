@@ -9,7 +9,7 @@ import { Participant, ParticipantSchema } from "./participant/schema/participant
 @Module({
     imports: [
         // MongooseModule.forRoot('mongodb://localhost:27017/code-perdu'),
-        MongooseModule.forRoot('mongodb+srv://code-perdu:MztGBVfpMpow86dc@code-perdu.ypqsujm.mongodb.net/?retryWrites=true&w=majority'),
+        MongooseModule.forRoot('mongodb+srv://code-perdu:MztGBVfpMpow86dc@code-perdu.ypqsujm.mongodb.net/code-perdu?retryWrites=true&w=majority'),
         MongooseModule.forFeature([{name: Participant.name, schema: ParticipantSchema}])
     ],
     controllers: [AppController, ParticipantController],
