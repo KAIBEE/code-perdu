@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Param, Post, Put, Query, Req } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put, Query } from "@nestjs/common";
 import { ParticipantService } from "./participant.service";
 import { ParticipantDTO } from "./dto/participantDTO";
-import { Participant } from "./schema/participant.schema";
+import { ParticipantRequest } from "./request/participantRequest";
 
 @Controller("/participants")
 export class ParticipantController {
@@ -9,12 +9,12 @@ export class ParticipantController {
     }
 
     @Get()
-    async getAll(): Promise<Participant[]> {
+    async getAll(): Promise<ParticipantDTO[]> {
         return await this.participantService.getAll();
     }
 
     @Post()
-    async save(@Body() participant: Participant) {
+    async save(@Body() participant: ParticipantRequest) {
         await this.participantService.save(participant);
     }
 
@@ -29,7 +29,7 @@ export class ParticipantController {
     }
 
     @Get("/completed")
-    async getAllHaveCompleted(): Promise<Participant[]> {
+    async getAllHaveCompleted(): Promise<ParticipantDTO[]> {
         return await this.participantService.getAllHaveCompleted();
     }
 }

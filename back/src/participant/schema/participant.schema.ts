@@ -8,7 +8,7 @@ export class Participant {
     @Prop({ required: true })
     email: string;
 
-    @Prop()
+    @Prop({ unique: true })
     code: string;
 
     @Prop({ default: false })
