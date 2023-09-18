@@ -11,7 +11,7 @@ export class Participant {
     @Prop()
     code: string;
 
-    @Prop()
+    @Prop({ default: false })
     isCompleted: boolean;
 }
 

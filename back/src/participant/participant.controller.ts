@@ -27,4 +27,9 @@ export class ParticipantController {
     async updateEmail(@Param("id") id: string, @Query("email") email: string) {
         await this.participantService.updateEmail(id, email);
     }
+
+    @Get("/completed")
+    async getAllHaveCompleted(): Promise<Participant[]> {
+        return await this.participantService.getAllHaveCompleted();
+    }
 }
