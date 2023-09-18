@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form'
-import artImage from '../../assets/art.jpg'
+import artImage from '@assets/art.jpg'
 import { useNavigate } from 'react-router-dom';
-import { BigTitle } from '../styled/BigTitle';
-import { InputStyled } from '../styled/InputStyled';
+import { BigTitle } from '@components/styled/BigTitle';
+import { InputStyled } from '@components/styled/InputStyled';
+import { ContinueButton } from '@components/styled/ContinueButton';
 
 function Home() {
     const {
@@ -48,9 +49,9 @@ function Home() {
                         <small>{errors.email.message as React.ReactNode}</small>
                     )}
                 </div>
-                {<button className="continueButton" type="submit">
+                {<ContinueButton type="submit">
                     Continuer
-                </button>}
+                </ContinueButton>}
             </form>
         </>
     )

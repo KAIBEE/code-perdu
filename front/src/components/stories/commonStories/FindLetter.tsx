@@ -1,20 +1,21 @@
-import { Title } from "../../styled/Title";
-import { InputStyled } from "../../styled/InputStyled";
-import { SmallParagraph } from "../../styled/SmallParagraph";
+import { Title } from "@components/styled/Title";
+import { InputStyled } from "@components/styled/InputStyled";
+import { SmallParagraph } from "@components/styled/SmallParagraph";
+import { ContinueButton } from "@components/styled/ContinueButton";
 
 function FindLetter() {
     return (
         <>
-            <Title>Un matin, tu te réveilles <br />
-                pour trouver une lettre <br />
-                mystérieuse scellée à l'encre dorée <br />
-                Elle porte le sceau de l'école des <br />
-                Codes Enchantés, un établissement<br />
-                renommé où les sorciers du code <br />
-                apprennent à fusionner la magie <br />
-                et la technologie. <br />
+            <Title>Un matin, tu te réveilles
+                pour trouver une lettre
+                mystérieuse scellée à l'encre dorée.
+                Elle porte le sceau de l'école des
+                Codes Enchantés, un établissement
+                renommé où les sorciers du code
+                apprennent à fusionner la magie
+                et la technologie.
                 <br />
-                La lettre t'invite à rejoindre l'école et <br />
+                La lettre t'invite à rejoindre l'école et
                 mentionne l'existence du légendaire 'Code Perdu'.
             </Title>
 
@@ -29,9 +30,9 @@ function FindLetter() {
                 />
             </div>
 
-            <button className="continueButton" type="submit">
+            <ContinueButton type="submit">
                 Valider
-            </button>
+            </ContinueButton>
         </>
     )
 }

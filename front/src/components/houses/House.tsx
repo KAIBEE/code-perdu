@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
-import previousImage from '../../assets/left-arrow.png'
-import { Title } from '../styled/Title';
+import previousImage from '@assets/left-arrow.png'
+import { Title } from '@components/styled/Title';
+import { ContinueButton } from '@components/styled/ContinueButton';
 
 function House() {
     const location = useLocation();
@@ -21,7 +22,7 @@ function House() {
                 <img src={houseImage} alt="Art" width={200} height={233}></img>
             </div>
             <Link to='/missionAcceptation'>
-            <button className='continueButton'>Continuer</button>
+            <ContinueButton>Continuer</ContinueButton>
             </Link>
         </>
     )
