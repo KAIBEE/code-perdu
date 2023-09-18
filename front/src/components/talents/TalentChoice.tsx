@@ -10,27 +10,27 @@ import { TalentButton } from './TalentButton';
 
 export type Talents = 'FRONT' | 'BACK' | 'DEVOPS' | 'PRODUCT'
 
-export type Houses = {
-    houseName: string;
-    houseImage: string;
+export type Teams = {
+    teamName: string;
+    teamImage: string;
 }
 
-const houses: Record<Talents, Houses> = {
+const teams: Record<Talents, Teams> = {
     'FRONT': {
-        houseImage: pixelImage,
-        houseName: "Pixelgriffes"
+        teamImage: pixelImage,
+        teamName: 'Pixelgriffes'
     },
     'BACK': {
-        houseImage: cogiImage,
-        houseName: "Cogitrouille"
+        teamImage: cogiImage,
+        teamName: 'Cogitrouille'
     },
     'DEVOPS': {
-        houseImage: dataImage,
-        houseName: "Datamage"
+        teamImage: dataImage,
+        teamName: 'Datamage'
     },
     'PRODUCT': {
-        houseImage: visioImage,
-        houseName: "Visiolupin"
+        teamImage: visioImage,
+        teamName: 'Visiolupin'
     },
 }
 
@@ -38,15 +38,15 @@ function TalentChoice() {
     const [chosenTalent, setChosenTalent] = useState<Talents | null>(null);
     const navigate = useNavigate();
 
-    const renderHouse = () => {
+    const navigateToTeam = () => {
         if (!chosenTalent) {
             return
         }
-        const { houseName, houseImage } = houses[chosenTalent];
-        return navigate("/house", {
+        const { teamName, teamImage } = teams[chosenTalent];
+        return navigate('/team', {
             state: {
-                houseName,
-                houseImage,
+                teamName,
+                teamImage,
             }
         })
     }
@@ -70,7 +70,7 @@ function TalentChoice() {
                     <TalentButton setChosenTalent={setChosenTalent} chosenTalent={chosenTalent} talent={'PRODUCT'} />
                 </div>
                 <div>
-                    {Boolean(chosenTalent) && <ContinueButton onClick={() => renderHouse()}>Continuer</ContinueButton>}
+                    {Boolean(chosenTalent) && <ContinueButton onClick={() => navigateToTeam()}>Continuer</ContinueButton>}
                 </div>
             </form>
         </>

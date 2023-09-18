@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SmallParagraph = styled.p`
 color: #63BFBC;

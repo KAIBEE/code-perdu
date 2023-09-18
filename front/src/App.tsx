@@ -1,12 +1,10 @@
 import './App.css'
-import GlobalStyle from './components/global/Global'
+import GlobalStyle from './components/styled/global/GlobalStyle'
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/home/Home'
 import TalentChoice from './components/talents/TalentChoice'
-import House from './components/houses/House';
-import MissionAcceptation from './components/stories/commonStories/MissionAcceptation';
-import Introduction from './components/stories/commonStories/Introduction';
-import FindLetter from './components/stories/commonStories/FindLetter';
+import Team from './components/teams/Team';
+import Stage from './components/stage/Stage';
 
 function App() {
 
@@ -16,10 +14,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/talent' element={<TalentChoice />} />
-        <Route path='/house' element={<House />} />
-        <Route path='/missionAcceptation' element={<MissionAcceptation />} />
-        <Route path='/introduction' element={<Introduction />} />
-        <Route path='/findLetter' element={<FindLetter />} />
+        <Route path='/team' element={<Team />} />
+        <Route path='/stage' element={<Stage />} />
       </Routes>
     </>
   )

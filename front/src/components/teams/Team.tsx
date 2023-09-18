@@ -3,29 +3,29 @@ import previousImage from '@assets/left-arrow.png'
 import { Title } from '@components/styled/Title';
 import { ContinueButton } from '@components/styled/ContinueButton';
 
-function House() {
+function Team() {
     const location = useLocation();
-    const houseName: string = location.state.houseName
-    const houseImage: string = location.state.houseImage
+    const teamName: string = location.state.teamName
+    const teamImage: string = location.state.teamImage
 
     return (
         <>
-            <Link className="linkPreviousButton" to='/talent'>
+            <Link className='linkPreviousButton' to='/talent'>
                 <img src={previousImage} />
             </Link>
             <header>
                 <Title>
-                    Felicitations, tu as rejoint la maison {houseName} !
+                    Felicitations, tu as rejoint la maison {teamName} !
                 </Title>
             </header>
             <div>
-                <img src={houseImage} alt="Art" width={200} height={233}></img>
+                <img src={teamImage} alt='Art' width={200} height={233}></img>
             </div>
             <Link to='/missionAcceptation'>
-            <ContinueButton>Continuer</ContinueButton>
+                <ContinueButton>Continuer</ContinueButton>
             </Link>
         </>
     )
 }
 
-export default House
+export default Team

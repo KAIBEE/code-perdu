@@ -15,7 +15,7 @@ function Home() {
     const navigate = useNavigate();
 
     const onSubmit = () => {
-        return navigate("/talent")
+        return navigate('/talent')
     }
 
     return (
@@ -26,22 +26,22 @@ function Home() {
                 </BigTitle>
             </header>
 
-            <img src={artImage} alt="Art" width={375} height={351}></img>
+            <img src={artImage} alt='Art' width={375} height={351}></img>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <InputStyled
                         placeholder='Renseigne ton adresse e-mail'
-                        type="search"
-                        id="email"
-                        {...register("email", {
-                            required: "Email is required",
+                        type='search'
+                        id='email'
+                        {...register('email', {
+                            required: 'Email is required',
                             validate: {
                                 maxLength: (v) =>
-                                    v.length <= 50 || "The email should have at most 50 characters",
+                                    v.length <= 50 || 'The email should have at most 50 characters',
                                 matchPattern: (v) =>
                                     /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-                                    "Email address must be a valid address",
+                                    'Email address must be a valid address',
                             },
                         })}
                     />
@@ -49,7 +49,7 @@ function Home() {
                         <small>{errors.email.message as React.ReactNode}</small>
                     )}
                 </div>
-                {<ContinueButton type="submit">
+                {<ContinueButton type='submit'>
                     Continuer
                 </ContinueButton>}
             </form>

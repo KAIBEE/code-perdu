@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
-import { Button } from "../styled/OptionButton";
-import { Talents } from "./TalentChoice";
+import { Dispatch, SetStateAction } from 'react';
+import { Button } from '../styled/OptionButton';
+import { Talents } from './TalentChoice';
 
 interface TalentButtonProps {
     talent: Talents, chosenTalent: Talents | null, setChosenTalent: Dispatch<SetStateAction<Talents | null>>
