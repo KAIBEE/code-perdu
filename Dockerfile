@@ -15,6 +15,7 @@ COPY --chown=nginx:nginx --from=builder-backend /usr/src/app/dist /api
 COPY --chown=nginx:nginx --from=builder-backend /usr/src/app/node_modules /api/node_modules
 COPY --chown=nginx:nginx entrypoint.sh /entrypoint.sh
 COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
+# Pour éviter de faire des réécriture nginx complexe, on dit que le back réponds sur /api en root path
 ENV API_PREFIX=/api
 
 USER nginx
