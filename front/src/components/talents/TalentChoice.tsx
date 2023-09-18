@@ -1,103 +1,78 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Title } from '@components/styled/Title';
-import { Button } from '@components/styled/OptionButton';
 import cogiImage from '@assets/cogi.png'
 import pixelImage from '@assets/pixel.png'
 import dataImage from '@assets/data.png'
 import visioImage from '@assets/visio.png'
 import { ContinueButton } from '@components/styled/ContinueButton';
+import { TalentButton } from './TalentButton';
 
-enum Talents {
-    FRONT = 'Front',
-    BACK = 'Back',
-    DEVOPS = 'Devops',
-    PRODUCT = 'Product'
+export type Talents = 'FRONT' | 'BACK' | 'DEVOPS' | 'PRODUCT'
+
+export type Houses = {
+    houseName: string;
+    houseImage: string;
+}
+
+const houses: Record<Talents, Houses> = {
+    'FRONT': {
+        houseImage: pixelImage,
+        houseName: "Pixelgriffes"
+    },
+    'BACK': {
+        houseImage: cogiImage,
+        houseName: "Cogitrouille"
+    },
+    'DEVOPS': {
+        houseImage: dataImage,
+        houseName: "Datamage"
+    },
+    'PRODUCT': {
+        houseImage: visioImage,
+        houseName: "Visiolupin"
+    },
 }
 
 function TalentChoice() {
-    const { FRONT, BACK, DEVOPS, PRODUCT } = Talents;
-    const [nextStep, setNextStep] = useState(false);
-    const [isContinueVisible, setIsContinueVisible] = useState<boolean>(false);
-    const [chosenTalent, setChosenTalent] = useState<string>("");
+    const [chosenTalent, setChosenTalent] = useState<Talents | null>(null);
     const navigate = useNavigate();
 
     const renderHouse = () => {
-        switch (chosenTalent) {
-            case FRONT:
-                return navigate("/house", {
-                    state: {
-                        houseName: "Pixelgriffes",
-                        houseImage: pixelImage
-                    }
-                })
-            case BACK:
-                return navigate("/house", {
-                    state: {
-                        houseName: "Cogitrouille",
-                        houseImage: cogiImage
-                    }
-                })
-            case DEVOPS:
-                return navigate("/house", {
-                    state: {
-                        houseName: "Datamage",
-                        houseImage: dataImage
-                    }
-                })
-            case PRODUCT:
-                return navigate("/house", {
-                    state: {
-                        houseName: "Visiolupin",
-                        houseImage: visioImage
-                    }
-                })
-            default:
-                return
+        if (!chosenTalent) {
+            return
         }
+        const { houseName, houseImage } = houses[chosenTalent];
+        return navigate("/house", {
+            state: {
+                houseName,
+                houseImage,
+            }
+        })
     }
-
-    const onClickTalent = (talent: Talents) => {
-        setChosenTalent(talent);
-        setIsContinueVisible(true);
-    }
-
-    const TalentButton = ({ talent }: { talent: Talents }) =>
-        <Button
-            type='button'
-            value={talent}
-            selected={chosenTalent === talent}
-            onClick={() => onClickTalent(talent)}>
-            {talent}
-        </Button>
 
     return (
         <>
-            {!nextStep ? (
-                <>
-                    <header>
-                        <Title>
-                            Huuum, je vois un grand talent en toi.
-                            <br /> Qu'est-ce donc ?
-                        </Title>
-                    </header>
+            <header>
+                <Title>
+                    Huuum, je vois un grand talent en toi.
+                    <br /> Qu'est-ce donc ?
+                </Title>
+            </header>
 
-                    <form>
-                        <div>
-                            <TalentButton talent={FRONT} />
-                            <TalentButton talent={BACK} />
-                        </div>
-                        <div>
-                            <TalentButton talent={DEVOPS} />
-                            <TalentButton talent={PRODUCT} />
-                        </div>
-                        <div>
-                            {isContinueVisible && <ContinueButton onClick={() => setNextStep(true)}>Continuer</ContinueButton>}
-                        </div>
-                    </form>
-                </>
-            ) : renderHouse()
-            }
+            <form>
+                <div>
+                    <TalentButton setChosenTalent={setChosenTalent} chosenTalent={chosenTalent} talent={'FRONT'} />
+                    <TalentButton setChosenTalent={setChosenTalent} chosenTalent={chosenTalent} talent={'BACK'} />
+                </div>
+                <div>
+                    <TalentButton setChosenTalent={setChosenTalent} chosenTalent={chosenTalent} talent={'DEVOPS'} />
+                    <TalentButton setChosenTalent={setChosenTalent} chosenTalent={chosenTalent} talent={'PRODUCT'} />
+                </div>
+                <div>
+                    {Boolean(chosenTalent) && <ContinueButton onClick={() => renderHouse()}>Continuer</ContinueButton>}
+                </div>
+            </form>
         </>
     )
 }
