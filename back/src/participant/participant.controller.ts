@@ -29,7 +29,7 @@ export class ParticipantController {
     }
 
     @Get("/completed")
-    async getAllHaveCompleted(): Promise<ParticipantDTO[]> {
-        return await this.participantService.getAllHaveCompleted();
+    async getAllCompleted(): Promise<ParticipantDTO[]> {
+        return await this.participantService.getAllCompleted();
     }
 }

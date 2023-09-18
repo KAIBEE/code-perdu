@@ -28,7 +28,7 @@ export class ParticipantService {
         await this.participantModel.findByIdAndUpdate(id, { email }).exec();
     }
 
-    async getAllHaveCompleted() {
+    async getAllCompleted() {
         return this.participantModel.find({ isCompleted: true }).exec();
     }
 }
