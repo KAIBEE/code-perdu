@@ -37,7 +37,7 @@ jobs:
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
-      - name: Replace the image in the Dockerrun file
+      - name: Replace the image tag in the Dockerrun file
         run: |
           sed -i "s/<TAG>/$IMAGE_TAG/" Dockerrun.aws.json
       - name: ZIP the Dockerrun file
