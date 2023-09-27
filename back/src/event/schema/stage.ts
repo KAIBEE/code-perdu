@@ -1,19 +1,24 @@
-import { v4 } from 'uuid';
-
 type StageType = 'NO_RESPONSE' | 'RESPONSE_INPUT';
 
-export type Stage = {
-  id: typeof v4;
+type BaseStage = {
+  id: string;
   type: StageType;
-  paragraphs: string[];
-  nextStageId: typeof v4;
+  content: string;
+  nextStageId: string;
 };
 
-export type StageWithAnswer = Stage & {
+export type StageWithAnswer = BaseStage & {
   correctAnswers: string[];
   type: 'RESPONSE_INPUT';
 };
 
-export type NoResponseStage = Stage & {
+export type StageWithAnswerAndImage = BaseStage &
+  StageWithAnswer & {
+    image: string;
+  };
+
+export type NoResponseStage = BaseStage & {
   type: 'NO_RESPONSE';
 };
+
+export type Stage = StageWithAnswer | NoResponseStage | StageWithAnswerAndImage;
