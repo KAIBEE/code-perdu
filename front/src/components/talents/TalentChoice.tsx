@@ -1,52 +1,27 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Title } from '@components/styled/Title';
-import cogiImage from '@assets/cogi.png'
-import pixelImage from '@assets/pixel.png'
-import dataImage from '@assets/data.png'
-import visioImage from '@assets/visio.png'
+
 import { ContinueButton } from '@components/styled/ContinueButton';
 import { TalentButton } from './TalentButton';
-
-export type Talents = 'FRONT' | 'BACK' | 'DEVOPS' | 'PRODUCT'
+import { Talent } from '@/types';
 
 export type Teams = {
     teamName: string;
     teamImage: string;
 }
 
-const teams: Record<Talents, Teams> = {
-    'FRONT': {
-        teamImage: pixelImage,
-        teamName: 'Pixelgriffes'
-    },
-    'BACK': {
-        teamImage: cogiImage,
-        teamName: 'Cogitrouille'
-    },
-    'DEVOPS': {
-        teamImage: dataImage,
-        teamName: 'Datamage'
-    },
-    'PRODUCT': {
-        teamImage: visioImage,
-        teamName: 'Visiolupin'
-    },
-}
-
 function TalentChoice() {
-    const [chosenTalent, setChosenTalent] = useState<Talents | null>(null);
+    const [chosenTalent, setChosenTalent] = useState<Talent | null>(null);
     const navigate = useNavigate();
 
     const navigateToTeam = () => {
         if (!chosenTalent) {
             return
         }
-        const { teamName, teamImage } = teams[chosenTalent];
         return navigate('/team', {
             state: {
-                teamName,
-                teamImage,
+                chosenTalent
             }
         })
     }
@@ -70,7 +45,7 @@ function TalentChoice() {
                     <TalentButton setChosenTalent={setChosenTalent} chosenTalent={chosenTalent} talent={'PRODUCT'} />
                 </div>
                 <div>
-                    {Boolean(chosenTalent) && <ContinueButton onClick={() => navigateToTeam()}>Continuer</ContinueButton>}
+                    {Boolean(chosenTalent) && <ContinueButton onClick={navigateToTeam}>Continuer</ContinueButton>}
                 </div>
             </form>
         </>

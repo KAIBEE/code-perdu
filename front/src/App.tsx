@@ -4,20 +4,31 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './components/home/Home'
 import TalentChoice from './components/talents/TalentChoice'
 import Team from './components/teams/Team';
-import Stage from './components/stage/Stage';
+import ScenarioStage from './components/stage/ScenarioStage';
+
+import useSWR from 'swr';
+import { gameFetcher } from './helpers/fetcher';
+import { GameContext } from './context/GameContext';
+import { Game } from './types';
+import Validation from './components/validation/Validation';
+import End from './components/end/End';
 
 function App() {
 
-  return (
-    <>
+  const { data } = useSWR<Game>('devFest', gameFetcher);
+
+  return (data &&
+    <GameContext.Provider value={data}>
       <GlobalStyle />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/talent' element={<TalentChoice />} />
         <Route path='/team' element={<Team />} />
-        <Route path='/stage' element={<Stage />} />
+        <Route path='/stage' element={<ScenarioStage />} />
+        <Route path='/validation' element={<Validation />} />
+        <Route path='/end' element={<End />} />
       </Routes>
-    </>
+    </ GameContext.Provider>
   )
 }
 
