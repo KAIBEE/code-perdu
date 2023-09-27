@@ -31,4 +31,9 @@ export class ParticipantController {
   async getAllCompleted(): Promise<ParticipantDto[]> {
     return await this.participantService.getAllCompleted();
   }
+  
+  @Get(":id/verify-code")
+  async isValidCode(@Param("id") id: string, @Query("code") code: string): Promise<Boolean> {
+    return await this.participantService.isValidCode(id, code);
+  }
 }

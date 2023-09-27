@@ -38,4 +38,9 @@ export class ParticipantService {
   async getAllCompleted() {
     return this.participantModel.find({ isCompleted: true }).exec();
   }
+
+  async isValidCode(id: string, code: string): Promise<boolean> {
+    const participant = await this.participantModel.findById(id).exec();
+    return participant?.code === code;
+  }
 }
