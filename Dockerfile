@@ -19,4 +19,5 @@ COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
 ENV API_PREFIX=/api
 
 USER nginx
+EXPOSE 80
 ENTRYPOINT ["sh", "/entrypoint.sh"]

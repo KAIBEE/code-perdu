@@ -1,0 +1,17 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "519236269948.dkr.ecr.eu-west-3.amazonaws.com/code-perdu:latest",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "80",
+      "HostPort": "80"
+    },
+    {
+      "ContainerPort": "443",
+      "HostPort": "443"
+    }
+  ]
+}
