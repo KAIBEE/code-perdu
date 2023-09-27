@@ -50,3 +50,6 @@ jobs:
         run: |
           aws elasticbeanstalk create-application-version --application-name code-perdu --version-label ${{ github.sha }} --source-bundle S3Bucket="elasticbeanstalk-eu-west-3-519236269948",S3Key="latest.zip"
           aws elasticbeanstalk update-environment --application-name code-perdu --environment-name code-perdu --version-label ${{ github.sha }}
+      - name: Wait elastic beanstalk
+        run: |
+          aws elasticbeanstalk wait environment-updated --application-name code-perdu --environment-name code-perdu
