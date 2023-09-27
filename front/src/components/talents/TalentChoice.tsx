@@ -1,52 +1,27 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Title } from '@components/styled/Title';
-import cogiImage from '@assets/cogi.png'
-import pixelImage from '@assets/pixel.png'
-import dataImage from '@assets/data.png'
-import visioImage from '@assets/visio.png'
+
 import { ContinueButton } from '@components/styled/ContinueButton';
 import { TalentButton } from './TalentButton';
+import { Talent } from '@/types';
 
-export type Talents = 'FRONT' | 'BACK' | 'DEVOPS' | 'PRODUCT'
-
-export type Houses = {
-    houseName: string;
-    houseImage: string;
-}
-
-const houses: Record<Talents, Houses> = {
-    'FRONT': {
-        houseImage: pixelImage,
-        houseName: "Pixelgriffes"
-    },
-    'BACK': {
-        houseImage: cogiImage,
-        houseName: "Cogitrouille"
-    },
-    'DEVOPS': {
-        houseImage: dataImage,
-        houseName: "Datamage"
-    },
-    'PRODUCT': {
-        houseImage: visioImage,
-        houseName: "Visiolupin"
-    },
+export type Teams = {
+    teamName: string;
+    teamImage: string;
 }
 
 function TalentChoice() {
-    const [chosenTalent, setChosenTalent] = useState<Talents | null>(null);
+    const [chosenTalent, setChosenTalent] = useState<Talent | null>(null);
     const navigate = useNavigate();
 
-    const renderHouse = () => {
+    const navigateToTeam = () => {
         if (!chosenTalent) {
             return
         }
-        const { houseName, houseImage } = houses[chosenTalent];
-        return navigate("/house", {
+        return navigate('/team', {
             state: {
-                houseName,
-                houseImage,
+                chosenTalent
             }
         })
     }
@@ -70,7 +45,7 @@ function TalentChoice() {
                     <TalentButton setChosenTalent={setChosenTalent} chosenTalent={chosenTalent} talent={'PRODUCT'} />
                 </div>
                 <div>
-                    {Boolean(chosenTalent) && <ContinueButton onClick={() => renderHouse()}>Continuer</ContinueButton>}
+                    {Boolean(chosenTalent) && <ContinueButton onClick={navigateToTeam}>Continuer</ContinueButton>}
                 </div>
             </form>
         </>
