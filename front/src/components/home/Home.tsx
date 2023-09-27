@@ -22,7 +22,7 @@ function Home() {
         <>
             <header>
                 <BigTitle>
-                    Bienvenue <br /> apprenti sorcier !!!!!
+                    Bienvenue <br /> apprenti sorcier !
                 </BigTitle>
             </header>
 
