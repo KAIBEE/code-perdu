@@ -1,5 +1,5 @@
 import { Fetcher } from 'swr';
-import type { Game } from '../types';
+import type { Game } from '@/types';
 import { mockGame } from './mockData';
 
 //const baseUrl = 'http://localhost:3000'

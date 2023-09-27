@@ -10,8 +10,8 @@ import { useState } from 'react';
 function ScenarioStage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const stageId: string = location.state.stageId;
-  const stages: Stage[] = location.state.stages;
+
+  const { stageId, stages }: { stageId: string, stages: Stage[] } = location.state;
 
   const currentStage = stages.find((stage) => stage.id === stageId);
 

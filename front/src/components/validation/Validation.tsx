@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { ContinueButton } from "../styled/ContinueButton";
-import { InputStyled } from "../styled/InputStyled";
+import { ContinueButton } from "@components/styled/ContinueButton";
+import { InputStyled } from "@components/styled/InputStyled";
 import { useState } from "react";
 
 function Validation() {
