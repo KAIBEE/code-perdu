@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "519236269948.dkr.ecr.eu-west-3.amazonaws.com/code-perdu:e14a58049e6a8e774ee7b8d53cc7dd2c62bb0d1e",
+    "Name": "519236269948.dkr.ecr.eu-west-3.amazonaws.com/code-perdu:<TAG>",
     "Update": "true"
   },
   "Ports": [
