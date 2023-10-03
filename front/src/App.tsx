@@ -6,26 +6,35 @@ import Team from "@components/teams/Team";
 import ScenarioStage from "@components/stage/ScenarioStage";
 
 import useSWR from "swr";
-import { gameFetcher } from "./helpers/fetcher";
 import { Provider } from "./context/GameContext";
 import { Game } from "./types";
 import Validation from "@components/validation/Validation";
 import End from "@components/end/End";
+import { fetchGame } from '@/helpers/fetcher';
+import { useState } from 'react';
 
 function App() {
-  const { data, isLoading } = useSWR<Game>("devFest", gameFetcher);
+
+  const [participantId, setParticipantId] = useState<string>();
+
+  const { data: game, isLoading } = useSWR<Game>('devFest', fetchGame);
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
-  if (!data && !isLoading) {
+  if (!game && !isLoading) {
     return <p>Erreur</p>;
   }
 
-  return (
-    <>
-      <Provider value={data}>
+  return (<>
+    {
+      game &&
+      <Provider value={{
+        game,
+        participantId,
+        setParticipantId
+      }}>
         <GlobalStyle />
         <div
           style={{
@@ -45,7 +54,8 @@ function App() {
           </Routes>
         </div>
       </Provider>
-    </>
+
+    }</>
   );
 }
 

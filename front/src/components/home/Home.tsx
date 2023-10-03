@@ -7,6 +7,10 @@ import artImage from "@assets/art.jpg";
 import { CustomLabelInput } from "@components/styled/CustomInput.tsx";
 import { ContinueButton } from "@components/styled/ContinueButton.ts";
 import styled from "styled-components";
+import { InputStyled } from '@components/styled/InputStyled';
+import { createParticipant } from '@/helpers/fetcher';
+import { GameContext } from '@/context/GameContext';
+import { useContext } from 'react';
 
 const emailSchema = yup
   .object({
@@ -45,11 +49,22 @@ function Home() {
     resolver: yupResolver(emailSchema),
   });
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const onSubmit = () => {
-    return navigate("/talent");
-  };
+    const { setParticipantId } = useContext(GameContext);
+
+    
+
+    const onSubmit = ({ email }: { email: string }) => {
+      createParticipant(email).then((participantId) => {
+          setParticipantId(participantId);
+          return navigate('/talent', {
+              state: {
+                  participantId
+                }
+          });
+      })
+  }
 
   return (
     <>

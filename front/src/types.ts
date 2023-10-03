@@ -16,18 +16,14 @@ export type NoResponseStage = BaseStage & {
 
 export type Stage = StageWithAnswer | NoResponseStage;
 
-export type Scenario = {
-  firstStageId: string;
-  stages: Stage[];
-}
-
 export type Talent = 'FRONT' | 'BACK' | 'DEVOPS' | 'PRODUCT';
 
 export type Team = {
   name: string;
   description: string;
   image: string;
-  scenario: Scenario;
+  firstStageId: string;
+  stages: Stage[];
 };
 
 export type Teams = Record<Talent, Team>;

@@ -1,4 +1,4 @@
-import type { Stage } from './stage';
+import type { Stage } from "./stage";
 
 export type Team = {
   name: string;
