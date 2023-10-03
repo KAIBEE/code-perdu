@@ -4,6 +4,8 @@ import { CustomLabelInput } from "@components/styled/CustomInput.tsx";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import { Content } from "@components/styled/Content.ts";
+import { Response } from "@components/styled/Response.ts";
 
 const validationSchema = yup.object({
   code: yup.string().required(),
@@ -20,16 +22,20 @@ function Validation() {
     return navigate("/end");
   };
   return (
-    <form onSubmit={handleSubmit(navigateToEnd)}>
-      <p>Finalise ton inscription en entrant le code reçu par email</p>
-      <CustomLabelInput
-        id={"code"}
-        placeholder="Ton code"
-        inputProps={{
-          ...register("code"),
-        }}
-      />
-      <ContinueButton>Continuer</ContinueButton>
+    <form className="view-with-button" onSubmit={handleSubmit(navigateToEnd)}>
+      <Content>
+        Finalise ton inscription en entrant le code reçu par email
+      </Content>
+      <Response>
+        <CustomLabelInput
+          id={"code"}
+          placeholder="Ton code"
+          inputProps={{
+            ...register("code"),
+          }}
+        />
+        <ContinueButton>Continuer</ContinueButton>
+      </Response>
     </form>
   );
 }

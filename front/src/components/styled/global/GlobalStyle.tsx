@@ -16,10 +16,19 @@ const GlobalStyle = createGlobalStyle`
     width: 100vw;
     max-width: 100vw;
     background-color: rgb(20, 21, 30);
+    overflow: hidden;
   }
-
-  .linkPreviousButton {
-    float: left
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .view-with-button {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
   }
 `;
 

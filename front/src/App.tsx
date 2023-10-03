@@ -27,14 +27,23 @@ function App() {
     <>
       <Provider value={data}>
         <GlobalStyle />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/talent" element={<TalentChoice />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/stage" element={<ScenarioStage />} />
-          <Route path="/validation" element={<Validation />} />
-          <Route path="/end" element={<End />} />
-        </Routes>
+        <div
+          style={{
+            margin: "1rem",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/talent" element={<TalentChoice />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/stage" element={<ScenarioStage />} />
+            <Route path="/validation" element={<Validation />} />
+            <Route path="/end" element={<End />} />
+          </Routes>
+        </div>
       </Provider>
     </>
   );

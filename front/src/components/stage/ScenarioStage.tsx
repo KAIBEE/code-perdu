@@ -7,6 +7,8 @@ import { CustomLabelInput } from "@components/styled/CustomInput.tsx";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { Content } from "@components/styled/Content.ts";
+import { Response } from "@components/styled/Response.ts";
 
 const answerSchema = yup
   .object({
@@ -54,37 +56,47 @@ function ScenarioStage() {
 
   return (
     <>
-      <Markdown>{content}</Markdown>
-      {type === "RESPONSE_INPUT" && (
-        <form onSubmit={handleSubmit(navigateNextStage)}>
-          <CustomLabelInput
-            id={"answer"}
-            placeholder={"Ta réponse"}
-            inputProps={{
-              ...register("answer"),
-            }}
-          />
-          {!isCorrectAnswer && (
-            <ContinueButton
-              type="submit"
-              onClick={() =>
-                setIsCorrectAnswer(
-                  currentStage.correctAnswers.includes(getValues("answer"))
-                )
-              }
-            >
-              Valider
+      <div className="view-with-button">
+        <Content>
+          <Markdown>{content}</Markdown>
+        </Content>
+        <Response>
+          {type === "RESPONSE_INPUT" && (
+            <form onSubmit={handleSubmit(navigateNextStage)}>
+              <CustomLabelInput
+                id={"answer"}
+                placeholder={"Ta réponse"}
+                inputProps={{
+                  ...register("answer"),
+                }}
+              />
+              {!isCorrectAnswer && (
+                <div className="text-center">
+                  <ContinueButton
+                    type="submit"
+                    onClick={() =>
+                      setIsCorrectAnswer(
+                        currentStage.correctAnswers.includes(
+                          getValues("answer")
+                        )
+                      )
+                    }
+                  >
+                    Valider
+                  </ContinueButton>
+                </div>
+              )}
+              {isCorrectAnswer && <p>Bravo, tu as trouvé la bonne réponse !</p>}
+              {isCorrectAnswer === false && <p>Dommage, essaie encore...</p>}
+            </form>
+          )}
+          {(type === "NO_RESPONSE" || isCorrectAnswer) && (
+            <ContinueButton type="submit" onClick={navigateNextStage}>
+              Continuer
             </ContinueButton>
           )}
-          {isCorrectAnswer && <p>Bravo, tu as trouvé la bonne réponse !</p>}
-          {isCorrectAnswer === false && <p>Dommage, essaie encore...</p>}
-        </form>
-      )}
-      {(type === "NO_RESPONSE" || isCorrectAnswer) && (
-        <ContinueButton type="submit" onClick={navigateNextStage}>
-          Continuer
-        </ContinueButton>
-      )}
+        </Response>
+      </div>
     </>
   );
 }

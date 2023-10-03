@@ -1,10 +1,11 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import previousImage from '@assets/left-arrow.png'
-import { Title } from '@components/styled/Title';
-import { ContinueButton } from '@components/styled/ContinueButton';
-import { GameContext } from '@/context/GameContext';
-import { useContext } from 'react';
-import { Talent } from '@/types';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import previousImage from "@assets/left-arrow.png";
+import { Title } from "@components/styled/Title";
+import { ContinueButton } from "@components/styled/ContinueButton";
+import { GameContext } from "@/context/GameContext";
+import { useContext } from "react";
+import { Talent } from "@/types";
+import { Header } from "@components/styled/Header.ts";
 
 function Team() {
   const navigate = useNavigate();
@@ -25,30 +26,36 @@ function Team() {
 
   const navigateToFirstStage = () => {
     const { firstStageId, stages } = scenario;
-    return navigate('/stage', {
+    return navigate("/stage", {
       state: {
         stageId: firstStageId,
-        stages
-      }
-    })
-  }
+        stages,
+      },
+    });
+  };
 
   return (
     <>
-      <Link className='linkPreviousButton' to='/talent'>
-        <img src={previousImage} />
+      <Link to="/talent">
+        <img alt="Flèche de retour" src={previousImage} />
       </Link>
-      <header>
-        <Title>
-          Felicitations, tu as rejoint la maison {name} !
-        </Title>
-      </header>
-      <div>
-        <img src={teamImage} alt='Art' width={200} height={233}></img>
+      <Header>
+        <Title>Felicitations, tu as rejoint la maison {name} !</Title>
+      </Header>
+      <div className="view-with-button">
+        <img
+          src={teamImage}
+          alt={`Emblème de la maison ${name}`}
+          width={200}
+          height={233}
+        />
+        <br />
+        <ContinueButton onClick={navigateToFirstStage}>
+          Continuer
+        </ContinueButton>
       </div>
-      <ContinueButton onClick={navigateToFirstStage}>Continuer</ContinueButton>
     </>
-  )
+  );
 }
 
-export default Team
+export default Team;

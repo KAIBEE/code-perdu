@@ -21,7 +21,7 @@ const ImageContainer = styled.div`
   padding-bottom: 20px;
 `;
 
-const FormContainer = styled.div`
+const FormContainer = styled.form`
   padding: 0 10px;
 `;
 
@@ -61,7 +61,12 @@ function Home() {
       </header>
 
       <ImageContainer>
-        <img src={artImage} alt="Art" width={"100%"} height={351}></img>
+        <img
+          src={artImage}
+          alt="Des sorciers sur des ordinateurs"
+          width={"100%"}
+          height={351}
+        ></img>
       </ImageContainer>
 
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
@@ -76,26 +81,26 @@ function Home() {
           }
           resetValue={() => reset({ email: "" })}
         />
-      </FormContainer>
-      <div
-        style={{
-          marginTop: "20px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: "30px",
-        }}
-      >
-        <ContinueButton type="submit">Continuer</ContinueButton>
+        <div
+          style={{
+            marginTop: "20px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            gap: "30px",
+          }}
+        >
+          <ContinueButton type="submit">Continuer</ContinueButton>
 
-        <Warning>
-          <span>⚠️</span>
-          L'adresse mail collectée sera utilisée pour le tirage au sort. En
-          indiquant mon adresse mail, j'autorise également Kaïbee à me
-          contacter.
-        </Warning>
-      </div>
+          <Warning>
+            <span>⚠️</span>
+            L'adresse mail collectée sera utilisée pour le tirage au sort. En
+            indiquant mon adresse mail, j'autorise également Kaïbee à me
+            contacter.
+          </Warning>
+        </div>
+      </FormContainer>
     </>
   );
 }
