@@ -13,6 +13,9 @@ export class Participant {
 
   @Prop({ default: false })
   isCompleted: boolean;
+
+  @Prop({ default: false })
+  isCodeValidated: boolean;
 }
 
 export const ParticipantSchema = SchemaFactory.createForClass(Participant);

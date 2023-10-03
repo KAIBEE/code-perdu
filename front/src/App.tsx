@@ -12,6 +12,7 @@ import Validation from "@components/validation/Validation";
 import End from "@components/end/End";
 import { fetchGame } from "@/helpers/fetcher";
 import { useState } from "react";
+import AdminPage from "./components/admin/AdminPage";
 
 function App() {
   const [participantId, setParticipantId] = useState<string>();
@@ -52,6 +53,7 @@ function App() {
               <Route path="/stage" element={<ScenarioStage />} />
               <Route path="/validation" element={<Validation />} />
               <Route path="/end" element={<End />} />
+              <Route path="/admin" element={<AdminPage />} />
             </Routes>
           </div>
         </Provider>
