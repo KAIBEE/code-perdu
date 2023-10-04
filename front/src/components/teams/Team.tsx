@@ -13,20 +13,19 @@ function Team() {
 
   const chosenTalent: Talent = location.state.chosenTalent;
 
-  const game = useContext(GameContext);
+  const { game } = useContext(GameContext);
 
   if (!game) {
     return null;
   }
 
   const { teams } = game;
-  const { name, image, scenario } = teams[chosenTalent];
+  const { name, image, firstStageId, stages } = teams[chosenTalent];
 
-  const teamImage = new URL(image, import.meta.url).href;
+  const teamImage = new URL(`../../assets/${image}`, import.meta.url).href;
 
   const navigateToFirstStage = () => {
-    const { firstStageId, stages } = scenario;
-    return navigate("/stage", {
+    return navigate('/stage', {
       state: {
         stageId: firstStageId,
         stages,

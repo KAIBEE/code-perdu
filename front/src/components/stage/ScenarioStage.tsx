@@ -2,7 +2,7 @@ import Markdown from "react-markdown";
 import { ContinueButton } from "@components/styled/ContinueButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Stage } from "@/types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CustomLabelInput } from "@components/styled/CustomInput.tsx";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -28,13 +28,19 @@ function ScenarioStage() {
     stages: Stage[];
   } = location.state;
 
-  const { register, handleSubmit, getValues } = useForm({
+  const { register, handleSubmit, getValues, reset } = useForm({
     resolver: yupResolver(answerSchema),
   });
 
   const currentStage = stages.find((stage) => stage.id === stageId);
 
   const [isCorrectAnswer, setIsCorrectAnswer] = useState<boolean>();
+
+  // reset component state when stageId changes
+  useEffect(() => {
+    reset();
+    setIsCorrectAnswer(undefined);
+  }, [stageId])
 
   if (!currentStage) {
     return null;

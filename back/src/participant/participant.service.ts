@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Participant } from './schema/participant.schema';
-import { Model } from 'mongoose';
-import { ParticipantDto } from './dto/participant.dto';
-import { ParticipantCreationRequest } from './request/participantCreation.request';
-import { v4 as uuidv4 } from 'uuid';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Participant } from "./schema/participant.schema";
+import { Model } from "mongoose";
+import { ParticipantDto } from "./dto/participant.dto";
+import { ParticipantCreationRequest } from "./request/participantCreation.request";
+import { v4 as uuidv4 } from "uuid";
 
 @Injectable()
 export class ParticipantService {
