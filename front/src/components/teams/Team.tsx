@@ -6,6 +6,11 @@ import { GameContext } from "@/context/GameContext";
 import { useContext } from "react";
 import { Talent } from "@/types";
 import { Header } from "@components/styled/Header.ts";
+import styled from "styled-components";
+
+const BackLogo = styled.img`
+  margin: 1rem 1.5rem;
+`;
 
 function Team() {
   const navigate = useNavigate();
@@ -25,7 +30,7 @@ function Team() {
   const teamImage = new URL(`../../assets/${image}`, import.meta.url).href;
 
   const navigateToFirstStage = () => {
-    return navigate('/stage', {
+    return navigate("/stage", {
       state: {
         stageId: firstStageId,
         stages,
@@ -36,7 +41,7 @@ function Team() {
   return (
     <>
       <Link to="/talent">
-        <img alt="Flèche de retour" src={previousImage} />
+        <BackLogo alt="Flèche de retour" src={previousImage} />
       </Link>
       <Header>
         <Title>Felicitations, tu as rejoint la maison {name} !</Title>

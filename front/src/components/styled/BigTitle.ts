@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-const glowEffect = `
-        0 0 5px rgb(204, 214, 210),
-        0 0 10px rgb(204, 214, 210),
-        0 0 20px rgb(204, 214, 210);`;
+const glowEffect = `2px 2px 10px rgba(255, 255, 255, 0.80);`;
 
 export const BigTitle = styled.h1<{
   $glowEffect?: boolean;
@@ -16,4 +13,5 @@ export const BigTitle = styled.h1<{
   color: ${({ color = "#ffffff" }) => color};
   text-shadow: ${({ $glowEffect }) => ($glowEffect ? glowEffect : "none")};
   padding: ${({ padding = "0" }) => padding};
+  font-family: Source Serif Pro;
 `;

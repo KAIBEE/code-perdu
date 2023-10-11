@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { Button } from "@components/styled/OptionButton";
+import { SvgComponent } from "@components/talents/TalentButtonSvg";
 import { Talent } from "@/types";
 
 interface TalentButtonProps {
@@ -20,6 +21,7 @@ export const TalentButton = ({
     selected={chosenTalent === talent}
     onClick={() => setChosenTalent(talent)}
   >
+    <SvgComponent isSelected={chosenTalent === talent} />
     {talent}
   </Button>
 );

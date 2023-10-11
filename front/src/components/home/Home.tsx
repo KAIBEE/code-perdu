@@ -4,13 +4,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BigTitle } from "@components/styled/BigTitle.ts";
 import artImage from "@assets/art.jpg";
+import infoLogo from "@assets/info.svg";
 import { CustomLabelInput } from "@components/styled/CustomInput.tsx";
 import { ContinueButton } from "@components/styled/ContinueButton.ts";
 import styled from "styled-components";
-import { InputStyled } from '@components/styled/InputStyled';
-import { createParticipant } from '@/helpers/fetcher';
-import { GameContext } from '@/context/GameContext';
-import { useContext } from 'react';
+import { createParticipant } from "@/helpers/fetcher";
+import { GameContext } from "@/context/GameContext";
+import { useContext } from "react";
 
 const emailSchema = yup
   .object({
@@ -31,12 +31,13 @@ const FormContainer = styled.form`
 
 const Warning = styled.p`
   display: flex;
-  gap: 15px;
-  color: rgb(118, 139, 134);
-  background-color: rgb(18, 20, 26);
-  line-height: 30px;
-  padding: 10px;
-  font-size: 10px;
+  padding: 8px 24px;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  color: #708c91;
+  font-size: 13px;
+  line-height: 16px;
 `;
 
 function Home() {
@@ -49,22 +50,20 @@ function Home() {
     resolver: yupResolver(emailSchema),
   });
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const { setParticipantId } = useContext(GameContext);
+  const { setParticipantId } = useContext(GameContext);
 
-    
-
-    const onSubmit = ({ email }: { email: string }) => {
-      createParticipant(email).then((participantId) => {
-          setParticipantId(participantId);
-          return navigate('/talent', {
-              state: {
-                  participantId
-                }
-          });
-      })
-  }
+  const onSubmit = ({ email }: { email: string }) => {
+    createParticipant(email).then((participantId) => {
+      setParticipantId(participantId);
+      return navigate("/talent", {
+        state: {
+          participantId,
+        },
+      });
+    });
+  };
 
   return (
     <>
@@ -90,9 +89,7 @@ function Home() {
           placeholder={"Ton email"}
           inputProps={{ ...register("email") }}
           error={
-            errors?.email?.message ? (
-              <small>{errors.email.message}</small>
-            ) : null
+            errors?.email?.message ? <small>{"Email non valide"}</small> : null
           }
           resetValue={() => reset({ email: "" })}
         />
@@ -109,7 +106,7 @@ function Home() {
           <ContinueButton type="submit">Continuer</ContinueButton>
 
           <Warning>
-            <span>⚠️</span>
+            <img src={infoLogo} alt="" />
             L'adresse mail collectée sera utilisée pour le tirage au sort. En
             indiquant mon adresse mail, j'autorise également Kaïbee à me
             contacter.

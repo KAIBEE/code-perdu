@@ -10,14 +10,13 @@ import { Provider } from "./context/GameContext";
 import { Game } from "./types";
 import Validation from "@components/validation/Validation";
 import End from "@components/end/End";
-import { fetchGame } from '@/helpers/fetcher';
-import { useState } from 'react';
+import { fetchGame } from "@/helpers/fetcher";
+import { useState } from "react";
 
 function App() {
-
   const [participantId, setParticipantId] = useState<string>();
 
-  const { data: game, isLoading } = useSWR<Game>('devFest', fetchGame);
+  const { data: game, isLoading } = useSWR<Game>("devFest", fetchGame);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -27,35 +26,37 @@ function App() {
     return <p>Erreur</p>;
   }
 
-  return (<>
-    {
-      game &&
-      <Provider value={{
-        game,
-        participantId,
-        setParticipantId
-      }}>
-        <GlobalStyle />
-        <div
-          style={{
-            margin: "1rem",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
+  return (
+    <>
+      {game && (
+        <Provider
+          value={{
+            game,
+            participantId,
+            setParticipantId,
           }}
         >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/talent" element={<TalentChoice />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/stage" element={<ScenarioStage />} />
-            <Route path="/validation" element={<Validation />} />
-            <Route path="/end" element={<End />} />
-          </Routes>
-        </div>
-      </Provider>
-
-    }</>
+          <GlobalStyle />
+          <div
+            style={{
+              margin: "0",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/talent" element={<TalentChoice />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/stage" element={<ScenarioStage />} />
+              <Route path="/validation" element={<Validation />} />
+              <Route path="/end" element={<End />} />
+            </Routes>
+          </div>
+        </Provider>
+      )}
+    </>
   );
 }
 
