@@ -1,7 +1,7 @@
-function stringToHash(str: string) {
+export const stringToHash = (str: string) => {
   let hash = 0;
 
-  if (str.length == 0) return '0';
+  if (str.length == 0) return "0";
 
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i);
@@ -10,4 +10,4 @@ function stringToHash(str: string) {
   }
 
   return String(Math.abs(hash));
-}
+};

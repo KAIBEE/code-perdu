@@ -4,6 +4,7 @@ import { Participant } from "./schema/participant.schema";
 import { Model } from "mongoose";
 import { ParticipantDto } from "./dto/participant.dto";
 import { ParticipantCreationRequest } from "./request/participantCreation.request";
+import { stringToHash } from "src/util";
 
 @Injectable()
 export class ParticipantService {
