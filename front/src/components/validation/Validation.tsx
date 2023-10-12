@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { Content } from "@components/styled/Content.ts";
 import { Response } from "@components/styled/Response.ts";
-import { checkCode } from "@/helpers/fetcher";
+import { checkCode } from "@/helpers/api";
 import { GameContext } from "@/context/GameContext";
 import { useContext, useState } from "react";
 

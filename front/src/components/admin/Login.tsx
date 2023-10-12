@@ -19,9 +19,6 @@ const loginSchema = yup.object().shape({
   password: yup.string().required("Le mot de passe est requis"),
 });
 
-const baseUrl =
-  process.env.NODE_ENV === "production" ? "/api" : "http://localhost:3000";
-
 const Login = () => {
   const {
     register,
@@ -41,7 +38,7 @@ const Login = () => {
     login: string;
     password: string;
   }) => {
-    const response = await fetch(`${baseUrl}/admin/login`, {
+    const response = await fetch('/admin/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

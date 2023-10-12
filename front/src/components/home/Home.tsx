@@ -8,7 +8,7 @@ import infoLogo from "@assets/info.svg";
 import { CustomLabelInput } from "@components/styled/CustomInput.tsx";
 import { ContinueButton } from "@components/styled/ContinueButton.ts";
 import styled from "styled-components";
-import { createParticipant } from "@/helpers/fetcher";
+import { createParticipant } from "@/helpers/api";
 import { GameContext } from "@/context/GameContext";
 import { useContext } from "react";
 
