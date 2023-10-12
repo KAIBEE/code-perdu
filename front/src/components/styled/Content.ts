@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const Content = styled.div`
-  font-size: 1em;
   color: #ffffff;
-  max-width: 22rem;
-  margin: 2rem 0;
+  margin: 2rem;
+  font-family: Crimson Text;
+  font-size: 1.5em;
+  font-weight: 400;
+  line-height: 32px;
 `;

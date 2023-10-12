@@ -15,7 +15,9 @@ export type Teams = {
 };
 
 const TalentContainer = styled.div`
-  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
 `;
 
 function TalentChoice() {
@@ -44,30 +46,26 @@ function TalentChoice() {
 
       <form className="view-with-button">
         <TalentContainer>
-          <div>
-            <TalentButton
-              setChosenTalent={setChosenTalent}
-              chosenTalent={chosenTalent}
-              talent={"FRONT"}
-            />
-            <TalentButton
-              setChosenTalent={setChosenTalent}
-              chosenTalent={chosenTalent}
-              talent={"BACK"}
-            />
-          </div>
-          <div>
-            <TalentButton
-              setChosenTalent={setChosenTalent}
-              chosenTalent={chosenTalent}
-              talent={"DEVOPS"}
-            />
-            <TalentButton
-              setChosenTalent={setChosenTalent}
-              chosenTalent={chosenTalent}
-              talent={"PRODUCT"}
-            />
-          </div>
+          <TalentButton
+            setChosenTalent={setChosenTalent}
+            chosenTalent={chosenTalent}
+            talent={"FRONT"}
+          />
+          <TalentButton
+            setChosenTalent={setChosenTalent}
+            chosenTalent={chosenTalent}
+            talent={"BACK"}
+          />
+          <TalentButton
+            setChosenTalent={setChosenTalent}
+            chosenTalent={chosenTalent}
+            talent={"DEVOPS"}
+          />
+          <TalentButton
+            setChosenTalent={setChosenTalent}
+            chosenTalent={chosenTalent}
+            talent={"PRODUCT"}
+          />
         </TalentContainer>
         <Response>
           {Boolean(chosenTalent) && (

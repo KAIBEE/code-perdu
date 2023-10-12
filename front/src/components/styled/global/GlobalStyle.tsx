@@ -5,17 +5,13 @@ const GlobalStyle = createGlobalStyle`
 
   ${reset}
 
-  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
   body {
-    font-family: Lato, sans-serif;
+    font-family:Crimson Text;
   }
 
   #root {
     height: 100vh;
-    max-height: 100vh;
-    width: 100vw;
-    max-width: 100vw;
-    background-color: rgb(20, 21, 30);
+    background: var(--Linear-background, linear-gradient(180deg, #261635 0%, #11141A 100%));
     overflow: hidden;
   }
   

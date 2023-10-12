@@ -1,12 +1,21 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface ButtonProps {
-    selected?: boolean
+  selected?: boolean;
 }
 
 export const Button = styled.button<ButtonProps>`
-margin: 10px;
-width: 120px;
-height: 120px;
-background-color: ${props => props.selected ? '#63BFBC' : ''}
+  width: 140px;
+  height: 140px;
+  border-radius: 5px;
+  background-color: ${(props) => (props.selected ? "#63BFBC" : "#fff")};
+  color: ${(props) => (props.selected ? "#fff" : "#000")};
+  position: relative;
+  font-family: Source Serif Pro;
+  font-weight: 600;
+  & > svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 `;

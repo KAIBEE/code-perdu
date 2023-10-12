@@ -1,57 +1,75 @@
 import styled from "styled-components";
 import { ReactNode } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
-
+import { Reset } from "@components/styled/ResetButton";
 const Input = styled.input`
-  & {
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    border-bottom: 1px solid #d2d2d2;
-    outline: 0;
-    font-size: 16px;
-    color: white;
-    padding: 7px 0;
-    background: transparent;
-    transition: border-color 0.2s;
+  font-family: inherit;
+  width: 100%;
+  border: 1px solid #d2d2d2;
+  box-sizing: border-box;
+  font-size: Roboto;
+  border-radius: 4px;
+  height: 48px;
+  outline: 0;
+  font-size: 16px;
+  color: white;
+  padding: 8px 16px;
+  background: transparent;
+  transition: border 0.2s;
+  border-color: #d2d2d2;
+
+  &:focus {
+    border-color: #d0bcff;
+    border-width: 2px;
   }
 
   &::placeholder {
     color: transparent;
   }
 
+  &.form__error {
+    color: #f2b8b5;
+    border-color: #f2b8b5;
+  }
+
   &:placeholder-shown ~ .form__label {
     font-size: 16px;
     cursor: text;
-    top: 20px;
+    top: 16px;
+    left: 16px;
   }
 `;
 
 const InputContainer = styled.div`
   position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
+  margin-top: 26px;
+  fill: #d2d2d2;
+  color: #d2d2d2;
+  height: 90px;
+  &:focus-within {
+    fill: #d0bcff;
+    color: #d0bcff;
+  }
 `;
 
 const Label = styled.label`
   &,
   .form__field:focus ~ .form__label {
     position: absolute;
-    top: 0;
+    top: -16px;
     display: block;
-    transition: 0.2s;
+    font-size: Roboto;
+    transition: 0.3s;
     font-size: 12px;
-    color: #9b9b9b;
   }
+  &.form__error {
+    color: #f2b8b5;
+  }
+`;
 
-  .form__field:focus ~ .form__label {
-    color: #009788;
-  }
-
-  .form_field:focus {
-    padding-bottom: 6px;
-    border-bottom: 2px solid #009788;
-  }
+const Error = styled.span`
+  color: #f2b8b5;
+  font-size: 12px;
 `;
 
 export const CustomLabelInput = ({
@@ -69,27 +87,25 @@ export const CustomLabelInput = ({
 }): ReactNode => {
   return (
     <>
-      {error}
       <InputContainer className={"form__group"}>
         <Input
           {...inputProps}
-          className={"form__field"}
+          id={id}
+          className={`form__field${error ? " form__error" : ""}`}
           placeholder={placeholder}
         />
-        <Label htmlFor={id} className="form__label">
+        <Label
+          htmlFor={id}
+          className={`form__label${error ? " form__error" : ""}`}
+        >
           {placeholder}
         </Label>
-        <img
-          src="./src/assets/Icon.png"
-          alt="Icon"
-          width={24}
-          height={24}
-          style={{
-            position: "absolute",
-            right: "5px",
-          }}
+        <Reset
           onClick={resetValue}
+          aria-label="reset"
+          className={error ? "form__error" : ""}
         />
+        <Error>{error}</Error>
       </InputContainer>
     </>
   );

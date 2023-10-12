@@ -40,7 +40,7 @@ function ScenarioStage() {
   useEffect(() => {
     reset();
     setIsCorrectAnswer(undefined);
-  }, [stageId])
+  }, [stageId, reset]);
 
   if (!currentStage) {
     return null;
@@ -83,8 +83,8 @@ function ScenarioStage() {
                     onClick={() =>
                       setIsCorrectAnswer(
                         currentStage.correctAnswers.includes(
-                          getValues("answer")
-                        )
+                          getValues("answer"),
+                        ),
                       )
                     }
                   >
