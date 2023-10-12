@@ -27,3 +27,8 @@ export const createParticipant = (email: string): Promise<string> => new Promise
         })
     }).catch((err) => reject(err));
 })
+
+export const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+
+
