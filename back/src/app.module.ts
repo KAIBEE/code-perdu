@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EventModule } from './event/event.module';
 import { ParticipantModule } from './participant/participant.module';
+import { AdminModule } from './admin/admin.module';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
@@ -13,6 +15,13 @@ import { ParticipantModule } from './participant/participant.module';
     ),
     ParticipantModule,
     EventModule,
+    AdminModule,
+    ThrottlerModule.forRoot([
+      {
+        ttl: 10 * 60,
+        limit: 20,
+      },
+    ]),
   ],
   controllers: [AppController],
   providers: [AppService],

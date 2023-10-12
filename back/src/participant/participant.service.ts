@@ -4,7 +4,6 @@ import { Participant } from "./schema/participant.schema";
 import { Model } from "mongoose";
 import { ParticipantDto } from "./dto/participant.dto";
 import { ParticipantCreationRequest } from "./request/participantCreation.request";
-import { v4 as uuidv4 } from "uuid";
 
 @Injectable()
 export class ParticipantService {
@@ -17,7 +16,7 @@ export class ParticipantService {
     participantRequest: ParticipantCreationRequest,
   ): Promise<ParticipantDto> {
     const participant = new this.participantModel(participantRequest);
-    participant.code = uuidv4();
+    participant.code = stringToHash(participant.email);
     return participant.save();
   }
 
@@ -26,9 +25,13 @@ export class ParticipantService {
   }
 
   async completeCircuit(id: string) {
-    await this.participantModel
+    const participant = await this.participantModel
       .findByIdAndUpdate(id, { isCompleted: true })
       .exec();
+    if (participant) {
+      // TODO: Send mail
+      // await sendMail(participant.email, 'Code de validation', participant.code);
+    }
   }
 
   async updateEmail(id: string, email: string) {
@@ -41,6 +44,22 @@ export class ParticipantService {
 
   async isValidCode(id: string, code: string): Promise<boolean> {
     const participant = await this.participantModel.findById(id).exec();
+    if (participant && participant.code === code) {
+      await this.participantModel
+        .findByIdAndUpdate(id, {
+          isCodeValidated: true,
+        })
+        .exec();
+    }
     return participant?.code === code;
+  }
+
+  async getAllCompletedAndVerified() {
+    return this.participantModel
+      .find({
+        isCompleted: true,
+        isCodeValidated: true,
+      })
+      .exec();
   }
 }

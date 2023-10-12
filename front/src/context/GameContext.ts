@@ -1,5 +1,5 @@
-import { Game } from '@/types';
-import { createContext } from 'react';
+import { Game } from "@/types";
+import { createContext } from "react";
 
 type GameContext = {
     game: Game | undefined;
