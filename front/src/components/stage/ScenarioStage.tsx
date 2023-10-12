@@ -49,6 +49,9 @@ function ScenarioStage() {
   const { content, nextStageId, type } = currentStage;
 
   const navigateNextStage = () => {
+    if (type === "RESPONSE_INPUT" && !isCorrectAnswer) {
+      return;
+    }
     if (!nextStageId) {
       return navigate("/validation");
     }
