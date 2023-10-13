@@ -86,7 +86,7 @@ function ScenarioStage() {
                     onClick={() =>
                       setIsCorrectAnswer(
                         currentStage.correctAnswers.includes(
-                          getValues("answer"),
+                          getValues("answer").toUpperCase(),
                         ),
                       )
                     }
