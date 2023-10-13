@@ -13,4 +13,4 @@ export const GameContext = createContext<GameContext>({
     setParticipantId: () => {}
 });
 
-export const { Provider } = GameContext;
+export const GameContextProvider = GameContext.Provider;

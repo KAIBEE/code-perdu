@@ -6,7 +6,7 @@ import Team from "@components/teams/Team";
 import ScenarioStage from "@components/stage/ScenarioStage";
 
 import useSWR from "swr";
-import { Provider } from "./context/GameContext";
+import { GameContextProvider } from "./context/GameContext";
 import Validation from "@components/validation/Validation";
 import End from "@components/end/End";
 import { fetcher } from "@/helpers/api";
@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       {game && (
-        <Provider
+        <GameContextProvider
           value={{
             game,
             participantId,
@@ -56,7 +56,7 @@ function App() {
               <Route path="/admin" element={<AdminPage />} />
             </Routes>
           </div>
-        </Provider>
+        </GameContextProvider>
       )}
     </>
   );
