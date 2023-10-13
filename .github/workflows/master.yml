@@ -1,50 +1,49 @@
-#name: Production
-#on:
-#  push:
-#    branches:
-#      - main
-#  pull_request:
-#    branches:
-#      - main
-#
-#permissions:
-#  id-token: write
-#  contents: read
-#
-#jobs:
-#  ci:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Checkout the repository
-#        uses: actions/checkout@v4
-#      - name: Configure AWS Credentials
-#        uses: aws-actions/configure-aws-credentials@v4
-#        with:
-#          aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-#          aws-region: eu-west-3
-#      - name: Login to Amazon ECR
-#        id: login-ecr
-#        uses: aws-actions/amazon-ecr-login@v1
-#        with:
-#          mask-password: 'true'
-#      - name: Build, tag, and push docker image to Amazon ECR
-#        env:
-#          REGISTRY: 519236269948.dkr.ecr.eu-west-3.amazonaws.com
-#          REPOSITORY: code-perdu
-#          IMAGE_TAG: ${{ github.sha }}
-#        run: |
-#          docker build -t $REGISTRY/$REPOSITORY:latest .
-#          docker push $REGISTRY/$REPOSITORY:latest
-#      - name: ZIP the Dockerrun file
-#        run: |
-#          zip -r code-perdu.zip Dockerrun.aws.json
-#      - name: Send the docker run file to S3
-#        run: |
-#          aws s3 cp code-perdu.zip s3://elasticbeanstalk-eu-west-3-519236269948/latest.zip
-#      - name: Deploy to elastic beanstalk
-#        run: |
-#          aws elasticbeanstalk create-application-version --application-name code-perdu --version-label ${{ github.sha }} --source-bundle S3Bucket="elasticbeanstalk-eu-west-3-519236269948",S3Key="latest.zip"
-#          aws elasticbeanstalk update-environment --application-name code-perdu --environment-name code-perdu --version-label ${{ github.sha }}
-#
+name: Production
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: eu-west-3
+      - name: Get timestamp
+        uses: gerred/actions/current-time@master
+        id: current-time
+
+      - name: Run string replace
+        uses: frabert/replace-string-action@master
+        id: format-time
+        with:
+          pattern: '[:\.]+'
+          string: "${{ steps.current-time.outputs.time }}"
+          replace-with: '-'
+          flags: 'g'
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v14
+        with:
+          aws_access_key: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          application_name: code-perdu
+          environment_name: Code-perdu-env
+          version_label: "the-simple-engineer-deployment-${{ steps.format-time.outputs.replaced }}"
+          region: us-west-3
+          deployment_package: deploy.zip
