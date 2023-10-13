@@ -1,11 +1,9 @@
 import AdminLayout from "@components/admin/AdminLayout.tsx";
 import { Title } from "@components/styled/Title.ts";
 import useSWR from "swr";
-import { fetcher } from "@/helpers/fetcher.ts";
+import { fetcher } from "@/helpers/api";
 import styled from "styled-components";
-
-const baseUrl =
-  process.env.NODE_ENV === "production" ? "/api" : "http://localhost:3000";
+  
 type Participant = {
   email: string;
   code: string;
@@ -32,7 +30,7 @@ const AdminDashboardPage = () => {
     data: participants,
     isLoading,
     error,
-  } = useSWR(`${baseUrl}/participants/completed-and-verified`, fetcher);
+  } = useSWR("/participants/completed-and-verified", fetcher);
 
   if (isLoading) {
     return <p>Loading...</p>;

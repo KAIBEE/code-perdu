@@ -49,6 +49,9 @@ function ScenarioStage() {
   const { content, nextStageId, type } = currentStage;
 
   const navigateNextStage = () => {
+    if (type === "RESPONSE_INPUT" && !isCorrectAnswer) {
+      return;
+    }
     if (!nextStageId) {
       return navigate("/validation");
     }
@@ -83,7 +86,7 @@ function ScenarioStage() {
                     onClick={() =>
                       setIsCorrectAnswer(
                         currentStage.correctAnswers.includes(
-                          getValues("answer"),
+                          getValues("answer").toUpperCase(),
                         ),
                       )
                     }

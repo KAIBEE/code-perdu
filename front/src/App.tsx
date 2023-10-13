@@ -6,18 +6,18 @@ import Team from "@components/teams/Team";
 import ScenarioStage from "@components/stage/ScenarioStage";
 
 import useSWR from "swr";
-import { Provider } from "./context/GameContext";
-import { Game } from "./types";
+import { GameContextProvider } from "./context/GameContext";
 import Validation from "@components/validation/Validation";
 import End from "@components/end/End";
-import { fetchGame } from "@/helpers/fetcher";
+import { fetcher } from "@/helpers/api";
 import { useState } from "react";
 import AdminPage from "./components/admin/AdminPage";
+import { EVENT_ID } from "./constants";
 
 function App() {
   const [participantId, setParticipantId] = useState<string>();
 
-  const { data: game, isLoading } = useSWR<Game>("devFest", fetchGame);
+  const { data: game, isLoading } = useSWR(`/event/${EVENT_ID}`, fetcher);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       {game && (
-        <Provider
+        <GameContextProvider
           value={{
             game,
             participantId,
@@ -56,7 +56,7 @@ function App() {
               <Route path="/admin" element={<AdminPage />} />
             </Routes>
           </div>
-        </Provider>
+        </GameContextProvider>
       )}
     </>
   );
