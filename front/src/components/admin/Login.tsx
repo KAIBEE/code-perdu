@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useState } from "react";
 import AdminContext from "@/context/AdminContext.ts";
 import { Title } from "@components/styled/Title.ts";
+import { baseUrl } from "@/constants";
 
 const FormContainer = styled.form({
   display: "flex",
@@ -38,7 +39,7 @@ const Login = () => {
     login: string;
     password: string;
   }) => {
-    const response = await fetch('/admin/login', {
+    const response = await fetch(`${baseUrl}/admin/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
