@@ -5,6 +5,7 @@ import { Model } from "mongoose";
 import { ParticipantDto } from "./dto/participant.dto";
 import { ParticipantCreationRequest } from "./request/participantCreation.request";
 import { stringToHash } from "src/util";
+import { sendMail } from "src/email/send_mail";
 
 @Injectable()
 export class ParticipantService {
@@ -16,9 +17,19 @@ export class ParticipantService {
   async save(
     participantRequest: ParticipantCreationRequest,
   ): Promise<ParticipantDto> {
+    const existing = await this.participantModel
+      .findOne({
+        email: participantRequest.email,
+      })
+      .exec();
+    if (existing) {
+      return existing;
+    }
     const participant = new this.participantModel(participantRequest);
     participant.code = stringToHash(participant.email);
-    return participant.save();
+    const savedParticipant = participant.save();
+    sendMail(participant.email, "Code de validation", participant.code);
+    return savedParticipant;
   }
 
   async getAll(): Promise<ParticipantDto[]> {
@@ -26,17 +37,22 @@ export class ParticipantService {
   }
 
   async completeCircuit(id: string) {
-    const participant = await this.participantModel
+    await this.participantModel
       .findByIdAndUpdate(id, { isCompleted: true })
       .exec();
-    if (participant) {
-      // TODO: Send mail
-      // await sendMail(participant.email, 'Code de validation', participant.code);
-    }
   }
 
   async updateEmail(id: string, email: string) {
-    await this.participantModel.findByIdAndUpdate(id, { email }).exec();
+    const updatedParticipant = await this.participantModel
+      .findByIdAndUpdate(id, { email })
+      .exec();
+    if (updatedParticipant) {
+      sendMail(
+        updatedParticipant.email,
+        "Code de validation",
+        updatedParticipant.code,
+      );
+    }
   }
 
   async getAllCompleted() {
