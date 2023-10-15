@@ -1,14 +1,14 @@
 import Markdown from "react-markdown";
 import { ContinueButton } from "@components/styled/ContinueButton";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Stage } from "@/types";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CustomLabelInput } from "@components/styled/CustomInput.tsx";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Content } from "@components/styled/Content.ts";
 import { Response } from "@components/styled/Response.ts";
+import { Stage } from "@/types.ts";
 
 const answerSchema = yup
   .object({
@@ -19,6 +19,12 @@ const answerSchema = yup
 function ScenarioStage() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  if (!location.state) {
+    // Un peu hacky mais obligatoire car, le composant n'est pas monté
+    window.location.href = "/";
+    return null;
+  }
 
   const {
     stageId,
@@ -46,7 +52,7 @@ function ScenarioStage() {
     return null;
   }
 
-  const { content, nextStageId, type } = currentStage;
+  const { content, nextStageId, type, image } = currentStage;
 
   const navigateNextStage = () => {
     if (type === "RESPONSE_INPUT" && !isCorrectAnswer) {
@@ -68,6 +74,7 @@ function ScenarioStage() {
       <div className="view-with-button">
         <Content>
           <Markdown>{content}</Markdown>
+          {image && <img src={`/assets/${image}`} alt={"Lazy image"} />}
         </Content>
         <Response>
           {type === "RESPONSE_INPUT" && (
@@ -79,9 +86,11 @@ function ScenarioStage() {
                   ...register("answer"),
                 }}
               />
-              {isCorrectAnswer === false && <p className="error">Dommage, essaie encore...</p>}
+              {isCorrectAnswer === false && (
+                <p className="error">Dommage, essaie encore...</p>
+              )}
 
-              {(
+              {
                 <div className="text-center">
                   <ContinueButton
                     type="submit"
@@ -96,10 +105,10 @@ function ScenarioStage() {
                     Valider
                   </ContinueButton>
                 </div>
-              )}
+              }
             </form>
           )}
-          {(type === "NO_RESPONSE") && (
+          {type === "NO_RESPONSE" && (
             <ContinueButton type="submit" onClick={navigateNextStage}>
               Continuer
             </ContinueButton>

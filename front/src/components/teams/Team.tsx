@@ -16,6 +16,12 @@ function Team() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  if (!location.state || !location.state.chosenTalent) {
+    // Un peu hacky mais obligatoire car, le composant n'est pas monté
+    window.location.href = "/";
+    return null;
+  }
+
   const chosenTalent: Talent = location.state.chosenTalent;
 
   const { game } = useContext(GameContext);

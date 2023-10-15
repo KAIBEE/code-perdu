@@ -15,7 +15,7 @@ const validationSchema = yup.object({
   code: yup.string().required(),
 });
 
-function Validation(): JSX.Element {
+function Validation() {
   const navigate = useNavigate();
   const { register, handleSubmit, getValues } = useForm({
     resolver: yupResolver(validationSchema),
@@ -26,8 +26,9 @@ function Validation(): JSX.Element {
   const { participantId } = useContext(GameContext);
 
   if (!participantId) {
-    // TODO handle this
-    return <></>
+    // Un peu hacky mais obligatoire car, le composant n'est pas monté
+    window.location.href = "/";
+    return null;
   }
 
   const navigateToEnd = () => {
@@ -35,24 +36,26 @@ function Validation(): JSX.Element {
     if (code) {
       checkCode(participantId, code).then((isCodeValid: boolean) => {
         if (isCodeValid) {
-          return navigate('/end');
+          return navigate("/end");
         }
         setIsInvalidCode(true);
-      })
+      });
     }
-  }
+  };
 
   return (
     <form className="view-with-button" onSubmit={handleSubmit(navigateToEnd)}>
       <Content>
         <p>
-          Bravo, après avoir percé tous les secrets des sortilèges numériques oubliés, te voilà en possession du Code perdu !
+          Bravo, après avoir percé tous les secrets des sortilèges numériques
+          oubliés, te voilà en possession du Code perdu !
         </p>
         <p>
           Tu es maintenant digne de tenter de remporter un voyage à Poudlard.
         </p>
         <p>
-          Pour cela, finalise ton inscription en indiquant ton code reçu par mail (il te servira pour le tirage au sort)
+          Pour cela, finalise ton inscription en indiquant ton code reçu par
+          mail (il te servira pour le tirage au sort)
         </p>
       </Content>
       <Response>
@@ -63,12 +66,7 @@ function Validation(): JSX.Element {
             ...register("code"),
           }}
         />
-        {
-          isInvalidCode &&
-          <p>
-            Code invalide !
-          </p>
-        }
+        {isInvalidCode && <p>Code invalide !</p>}
         <ContinueButton>Continuer</ContinueButton>
       </Response>
     </form>
