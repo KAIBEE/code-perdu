@@ -79,7 +79,9 @@ function ScenarioStage() {
                   ...register("answer"),
                 }}
               />
-              {!isCorrectAnswer && (
+              {isCorrectAnswer === false && <p className="error">Dommage, essaie encore...</p>}
+
+              {(
                 <div className="text-center">
                   <ContinueButton
                     type="submit"
@@ -95,11 +97,9 @@ function ScenarioStage() {
                   </ContinueButton>
                 </div>
               )}
-              {isCorrectAnswer && <p>Bravo, tu as trouvé la bonne réponse !</p>}
-              {isCorrectAnswer === false && <p>Dommage, essaie encore...</p>}
             </form>
           )}
-          {(type === "NO_RESPONSE" || isCorrectAnswer) && (
+          {(type === "NO_RESPONSE") && (
             <ContinueButton type="submit" onClick={navigateNextStage}>
               Continuer
             </ContinueButton>
