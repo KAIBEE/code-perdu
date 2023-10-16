@@ -1,11 +1,9 @@
-import {createTransport} from 'nodemailer'; // TODO: Get OVH mail account
+import { createTransport } from "nodemailer"; // TODO: Get OVH mail account
 
-// TODO: Get OVH mail account
-const from = 'test@kaibee.fr';
 export const sendMail = async (to: string, subject: string, text: string) => {
   const transporter = createTransport({
-    name: 'kaibee.fr',
-    host: 'ssl0.ovh.net',
+    name: "kaibee.fr",
+    host: "ssl0.ovh.net",
     port: 465,
     secure: true,
     auth: {
@@ -15,7 +13,7 @@ export const sendMail = async (to: string, subject: string, text: string) => {
   });
 
   const mailOptions = {
-    from,
+    from: process.env.MAIL_USER,
     to,
     subject,
     text,
