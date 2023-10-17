@@ -42,6 +42,10 @@ export class ParticipantController {
     @Param("id") id: string,
     @Query("code") code: string,
   ): Promise<Boolean> {
-    return await this.participantService.isValidCode(id, code);
+    const isValid = await this.participantService.isValidCode(id, code);
+    if (isValid) {
+      await this.participantService.completeCircuit(id);
+    }
+    return isValid;
   }
 }

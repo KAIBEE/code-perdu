@@ -74,8 +74,9 @@ function ScenarioStage() {
       <div className="view-with-button">
         <Content>
           <Markdown>{content}</Markdown>
-          {image && <img src={`/assets/${image}`} alt={"Lazy image"} />}
         </Content>
+        {image && <img src={`/src/assets/${image}`} alt={"Lazy image"} width={200}
+            height={233} />}
         <Response>
           {type === "RESPONSE_INPUT" && (
             <form onSubmit={handleSubmit(navigateNextStage)}>
