@@ -14,7 +14,12 @@ import { useContext } from "react";
 
 const emailSchema = yup
   .object({
-    email: yup.string().email().required(),
+    email: yup
+      .string()
+      .matches(new RegExp("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$"), {
+        message: "L'email doit être sous ce format : test@mail.com",
+      })
+      .required(),
   })
   .required();
 
