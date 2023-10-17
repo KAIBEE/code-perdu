@@ -19,5 +19,9 @@ export const sendMail = async (to: string, subject: string, text: string) => {
     text,
   };
 
-  await transporter.sendMail(mailOptions);
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (err) {
+    console.log(`Le mail ne s'est pas envoyé : ${err}`);
+  }
 };

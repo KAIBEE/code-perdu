@@ -28,7 +28,9 @@ export class ParticipantService {
     const participant = new this.participantModel(participantRequest);
     participant.code = stringToHash(participant.email);
     const savedParticipant = participant.save();
-    sendMail(participant.email, "Code de validation", participant.code);
+
+    await sendMail(participant.email, "Code de validation", participant.code);
+
     return savedParticipant;
   }
 
