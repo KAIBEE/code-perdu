@@ -6,11 +6,12 @@ const ResetButton = styled.button`
   top: 0;
   background: transparent;
   outline: none;
+  padding: 0.35em 0.8em;
   &.form__error {
     fill: #f2b8b5;
   }
   & > svg {
-    height: 24px;
+    height: 3vh;
     fill: inherit;
   }
 `;

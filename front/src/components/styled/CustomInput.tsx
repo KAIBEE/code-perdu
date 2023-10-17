@@ -9,9 +9,9 @@ const Input = styled.input`
   box-sizing: border-box;
   font-size: Roboto;
   border-radius: 4px;
-  height: 48px;
+  height: 5.25vh;
   outline: 0;
-  font-size: 16px;
+  font-size: 1em;
   color: white;
   padding: 8px 16px;
   background: transparent;
@@ -35,17 +35,17 @@ const Input = styled.input`
   &:placeholder-shown ~ .form__label {
     font-size: 16px;
     cursor: text;
-    top: 16px;
+    top: 1.75vh;
     left: 16px;
   }
 `;
 
 const InputContainer = styled.div`
   position: relative;
-  margin-top: 26px;
+  margin-top: 3vh;
   fill: #d2d2d2;
   color: #d2d2d2;
-  height: 90px;
+  height: 10vh;
   &:focus-within {
     fill: #d0bcff;
     color: #d0bcff;
@@ -56,7 +56,7 @@ const Label = styled.label`
   &,
   .form__field:focus ~ .form__label {
     position: absolute;
-    top: -16px;
+    top: -2vh;
     display: block;
     font-size: Roboto;
     transition: 0.3s;
