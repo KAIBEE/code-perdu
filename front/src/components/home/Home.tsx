@@ -21,8 +21,8 @@ const emailSchema = yup
 const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 2.5vh;
+  padding-bottom: 2.5vh;
 `;
 
 const FormContainer = styled.form`
@@ -37,8 +37,12 @@ const Warning = styled.p`
   flex-shrink: 0;
   color: #708c91;
   font-size: 13px;
-  line-height: 16px;
+  line-height: 2vh;
 `;
+
+const Image = styled.img`
+  max-height: 42.5vh
+`
 
 function Home() {
   const {
@@ -68,19 +72,19 @@ function Home() {
   return (
     <>
       <header>
-        <BigTitle $glowEffect padding={"20px 0px 5px 0px"}>
+        <BigTitle $glowEffect padding={"2.5vh 0px 1vh 0px"}>
           Bienvenue <br />
           apprenti sorcier !
         </BigTitle>
       </header>
 
       <ImageContainer>
-        <img
+        <Image
           src={artImage}
           alt="Des sorciers sur des ordinateurs"
           width={"100%"}
           height={351}
-        ></img>
+        ></Image>
       </ImageContainer>
 
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
@@ -95,12 +99,12 @@ function Home() {
         />
         <div
           style={{
-            marginTop: "20px",
+            marginTop: "2.5vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            gap: "30px",
+            gap: "3vh",
           }}
         >
           <ContinueButton type="submit">Continuer</ContinueButton>
