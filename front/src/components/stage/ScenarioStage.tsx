@@ -86,6 +86,7 @@ function ScenarioStage() {
                 inputProps={{
                   ...register("answer"),
                 }}
+                resetValue={() => reset({ answer: "" })}
               />
               {isCorrectAnswer === false && (
                 <p className="error">Dommage, essaie encore...</p>
