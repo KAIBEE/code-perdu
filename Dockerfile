@@ -18,6 +18,8 @@ COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
 ENV NODE_ENV production
 # Pour éviter de faire des réécriture nginx complexe, on dit que le back réponds sur /api en root path
 ENV API_PREFIX=/api
+ENV MAIL_USER=codeperdu@kaibee.fr
+ENV MAIL_PASSWORD=LostCode2023!?
 
 
 USER nginx
