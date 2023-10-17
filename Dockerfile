@@ -6,7 +6,7 @@ RUN npm install && npm run build
 FROM node:lts as builder-backend
 WORKDIR /usr/src/app
 COPY back ./
-RUN npm install && npm run build
+RUN npm install pm2@latest -g && npm install && npm run build
 
 FROM nginx:alpine
 RUN apk add --no-cache nodejs && mkdir -p /etc/nginx/logs && chown -R nginx: /var/cache/nginx /etc/nginx/
