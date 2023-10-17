@@ -13,9 +13,11 @@ import { fetcher } from "@/helpers/api";
 import { useState } from "react";
 import AdminPage from "./components/admin/AdminPage";
 import { EVENT_ID } from "./constants";
+import ErrorScreen from "./components/error/ErrorScreen";
 
 function App() {
   const [participantId, setParticipantId] = useState<string>();
+  const [chosenTalent, setChosenTalent] = useState<string>();
 
   const { data: game, isLoading } = useSWR(`/event/${EVENT_ID}`, fetcher);
 
@@ -35,6 +37,8 @@ function App() {
             game,
             participantId,
             setParticipantId,
+            chosenTalent,
+            setChosenTalent
           }}
         >
           <GlobalStyle />
@@ -51,6 +55,7 @@ function App() {
               <Route path="/talent" element={<TalentChoice />} />
               <Route path="/team" element={<Team />} />
               <Route path="/stage" element={<ScenarioStage />} />
+              <Route path="/error" element={<ErrorScreen />} />
               <Route path="/validation" element={<Validation />} />
               <Route path="/end" element={<End />} />
               <Route path="/admin" element={<AdminPage />} />

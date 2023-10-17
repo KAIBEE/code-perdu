@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 import { Button } from "@components/styled/OptionButton";
 import { SvgComponent } from "@components/talents/TalentButtonSvg";
 import { Talent } from "@/types";
@@ -6,7 +5,7 @@ import { Talent } from "@/types";
 interface TalentButtonProps {
   talent: Talent;
   chosenTalent: Talent | null;
-  setChosenTalent: Dispatch<SetStateAction<Talent | null>>;
+  setChosenTalent: (talent: Talent) => void;
 }
 
 export const TalentButton = ({

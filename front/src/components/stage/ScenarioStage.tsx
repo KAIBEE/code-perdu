@@ -56,7 +56,12 @@ function ScenarioStage() {
 
   const navigateNextStage = () => {
     if (type === "RESPONSE_INPUT" && !isCorrectAnswer) {
-      return;
+      return navigate("/error", {
+        state: {
+          stageId,
+          stages,
+        },
+      });
     }
     if (!nextStageId) {
       return navigate("/validation");

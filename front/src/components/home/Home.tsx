@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { createParticipant } from "@/helpers/api";
 import { GameContext } from "@/context/GameContext";
 import { useContext } from "react";
+import { ImageContainer } from "../styled/ImageContainer";
 
 const emailSchema = yup
   .object({
@@ -22,13 +23,6 @@ const emailSchema = yup
       .required(),
   })
   .required();
-
-const ImageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-top: 2.5vh;
-  padding-bottom: 2.5vh;
-`;
 
 const FormContainer = styled.form`
   padding: 0 10px;

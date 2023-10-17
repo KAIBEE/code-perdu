@@ -4,7 +4,7 @@ import { Title } from "@components/styled/Title";
 import { ContinueButton } from "@components/styled/ContinueButton";
 import { GameContext } from "@/context/GameContext";
 import { useContext } from "react";
-import { Talent } from "@/types";
+
 import { Header } from "@components/styled/Header.ts";
 import styled from "styled-components";
 
@@ -14,19 +14,11 @@ const BackLogo = styled.img`
 
 function Team() {
   const navigate = useNavigate();
-  const location = useLocation();
 
-  if (!location.state || !location.state.chosenTalent) {
-    // Un peu hacky mais obligatoire car, le composant n'est pas monté
+  const { game, chosenTalent } = useContext(GameContext);
+
+  if (!game || !chosenTalent) {
     window.location.href = "/";
-    return null;
-  }
-
-  const chosenTalent: Talent = location.state.chosenTalent;
-
-  const { game } = useContext(GameContext);
-
-  if (!game) {
     return null;
   }
 

@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Title } from "@components/styled/Title";
 
 import { ContinueButton } from "@components/styled/ContinueButton";
 import { TalentButton } from "./TalentButton";
-import { Talent } from "@/types";
 import { Header } from "@components/styled/Header.ts";
 import { Response } from "@components/styled/Response.ts";
 import styled from "styled-components";
+import { GameContext } from "@/context/GameContext";
 
 export type Teams = {
   teamName: string;
@@ -21,18 +21,14 @@ const TalentContainer = styled.div`
 `;
 
 function TalentChoice() {
-  const [chosenTalent, setChosenTalent] = useState<Talent | null>(null);
+  const { chosenTalent, setChosenTalent } = useContext(GameContext);
   const navigate = useNavigate();
 
   const navigateToTeam = () => {
     if (!chosenTalent) {
       return;
     }
-    return navigate("/team", {
-      state: {
-        chosenTalent,
-      },
-    });
+    return navigate("/team");
   };
 
   return (
