@@ -97,16 +97,17 @@ function ScenarioStage() {
                   ...register("answer"),
                   onKeyDown: (e: KeyboardEvent) => {
                     if (e.key === "Enter") {
-                      e.preventDefault();
-                      const isCorrectAnswer =
-                        currentStage.correctAnswers.includes(
-                          getValues("answer").trim().toUpperCase(),
-                        );
-                      setIsCorrectAnswer(isCorrectAnswer);
-
-                      if (isCorrectAnswer) {
-                        navigateNextStage();
-                      }
+                      // TODO: Si quelqu'un peut reprendre ça
+                      // e.preventDefault();
+                      // const isCorrectAnswer =
+                      //   currentStage.correctAnswers.includes(
+                      //     getValues("answer").trim().toUpperCase(),
+                      //   );
+                      // setIsCorrectAnswer(isCorrectAnswer);
+                      //
+                      // if (isCorrectAnswer) {
+                      //   navigateNextStage();
+                      // }
                     }
                   },
                 }}

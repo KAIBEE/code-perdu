@@ -22,6 +22,7 @@ export class ParticipantService {
         email: participantRequest.email,
       })
       .exec();
+    console.log(existing);
     if (existing) {
       await sendMail(
         existing.email,
@@ -30,8 +31,10 @@ export class ParticipantService {
       );
       return existing;
     }
+
     const participant = new this.participantModel(participantRequest);
     participant.code = stringToHash(participant.email);
+    console.log(participant);
     const savedParticipant = participant.save();
 
     await sendMail(
@@ -58,6 +61,8 @@ export class ParticipantService {
       .findByIdAndUpdate(id, { email })
       .exec();
     if (updatedParticipant) {
+      updatedParticipant.code = stringToHash(updatedParticipant.email);
+      await updatedParticipant.save();
       await sendMail(
         updatedParticipant.email,
         "Kaibee - Code de validation",
