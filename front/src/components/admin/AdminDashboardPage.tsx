@@ -3,7 +3,8 @@ import { Title } from "@components/styled/Title.ts";
 import useSWR from "swr";
 import { fetcher } from "@/helpers/api";
 import styled from "styled-components";
-  
+import { ContinueButton } from "@components/styled/ContinueButton.ts";
+
 type Participant = {
   email: string;
   code: string;
@@ -12,17 +13,13 @@ type Participant = {
 const ParticipantContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5rem;
-`;
-
-const ParticipantsActionsContainer = styled.div`
-  display: flex;
-  gap: 10rem;
 `;
 
 const ParticipantRow = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 10px;
+  color: white;
+  margin-left: 20px;
 `;
 
 const AdminDashboardPage = () => {
@@ -44,17 +41,19 @@ const AdminDashboardPage = () => {
     const randomIndex = Math.floor(Math.random() * participants.length);
     const randomParticipant = participants[randomIndex];
     alert(
-      `Le gagnant est ${randomParticipant.email} avec le code ${randomParticipant.code}`
+      `Le gagnant est ${randomParticipant.email} avec le code ${randomParticipant.code}`,
     );
   };
 
   return (
     <AdminLayout>
       <ParticipantContainer>
-        <ParticipantsActionsContainer>
-          <Title>Participants ayant validé leur code</Title>
-          <button onClick={getRandomParticipant}>Participant gagnant</button>
-        </ParticipantsActionsContainer>
+        <Title>
+          Participants ayant validé leur code et complété le parcours
+        </Title>
+        <ContinueButton onClick={getRandomParticipant}>
+          Participant gagnant
+        </ContinueButton>
 
         {participants.map((participant: Participant) => {
           return (

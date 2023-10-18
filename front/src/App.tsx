@@ -60,7 +60,10 @@ function App() {
               <Route path="/error" element={<ErrorScreen />} />
               <Route path="/validation" element={<Validation />} />
               <Route path="/end" element={<End />} />
-              <Route path="/admin" element={<AdminPage />} />
+              <Route
+                path="/admin-kaibee-dev-fest-2023"
+                element={<AdminPage />}
+              />
               <Route path="/reset-email" element={<ResetEmailPage />} />
             </Routes>
           </div>
