@@ -55,7 +55,11 @@ export class ParticipantService {
 
   async updateEmail(id: string, email: string) {
     const updatedParticipant = await this.participantModel
-      .findByIdAndUpdate(id, { email, code: stringToHash(email) })
+      .findByIdAndUpdate(
+        id,
+        { email, code: stringToHash(email) },
+        { new: true },
+      )
       .exec();
     if (updatedParticipant) {
       await sendMail(
