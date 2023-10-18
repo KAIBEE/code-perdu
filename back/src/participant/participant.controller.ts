@@ -22,7 +22,7 @@ export class ParticipantController {
     await this.participantService.completeCircuit(id);
   }
 
-  @Put(":id/email")
+  @Put(":id/update-email")
   async updateEmail(@Param("id") id: string, @Query("email") email: string) {
     await this.participantService.updateEmail(id, email);
   }

@@ -1,7 +1,7 @@
 import Markdown from "react-markdown";
 import { ContinueButton } from "@components/styled/ContinueButton";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 import { CustomLabelInput } from "@components/styled/CustomInput.tsx";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -95,6 +95,21 @@ function ScenarioStage() {
                 placeholder={"Ta réponse"}
                 inputProps={{
                   ...register("answer"),
+                  onKeyDown: (e: KeyboardEvent) => {
+                    if (e.key === "Enter") {
+                      // TODO: Si quelqu'un peut reprendre ça
+                      // e.preventDefault();
+                      // const isCorrectAnswer =
+                      //   currentStage.correctAnswers.includes(
+                      //     getValues("answer").trim().toUpperCase(),
+                      //   );
+                      // setIsCorrectAnswer(isCorrectAnswer);
+                      //
+                      // if (isCorrectAnswer) {
+                      //   navigateNextStage();
+                      // }
+                    }
+                  },
                 }}
                 resetValue={() => reset({ answer: "" })}
               />

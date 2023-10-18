@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { ReactNode } from "react";
+import { KeyboardEvent, ReactNode } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 import { Reset } from "@components/styled/ResetButton";
+
 const Input = styled.input`
   font-family: inherit;
   width: 100%;
@@ -46,6 +47,7 @@ const InputContainer = styled.div`
   fill: #d2d2d2;
   color: #d2d2d2;
   height: 10dvh;
+
   &:focus-within {
     fill: #d0bcff;
     color: #d0bcff;
@@ -62,6 +64,7 @@ const Label = styled.label`
     transition: 0.3s;
     font-size: 12px;
   }
+
   &.form__error {
     color: #f2b8b5;
   }
@@ -79,7 +82,9 @@ export const CustomLabelInput = ({
   id,
   resetValue,
 }: {
-  inputProps: UseFormRegisterReturn<string>;
+  inputProps: UseFormRegisterReturn<string> & {
+    onKeyDown?: (e: KeyboardEvent) => void;
+  };
   error?: ReactNode;
   placeholder?: string;
   id: string;
@@ -90,6 +95,7 @@ export const CustomLabelInput = ({
       <InputContainer className={"form__group"}>
         <Input
           {...inputProps}
+          onKeyDown={inputProps.onKeyDown ? inputProps.onKeyDown : undefined}
           id={id}
           className={`form__field${error ? " form__error" : ""}`}
           placeholder={placeholder}

@@ -15,6 +15,7 @@ import AdminPage from "./components/admin/AdminPage";
 import { EVENT_ID } from "./constants";
 import ErrorScreen from "./components/error/ErrorScreen";
 import { Talent } from "@/types.ts";
+import ResetEmailPage from "@components/email/ResetEmail.page.tsx";
 
 function App() {
   const [participantId, setParticipantId] = useState<string>();
@@ -59,7 +60,11 @@ function App() {
               <Route path="/error" element={<ErrorScreen />} />
               <Route path="/validation" element={<Validation />} />
               <Route path="/end" element={<End />} />
-              <Route path="/admin" element={<AdminPage />} />
+              <Route
+                path="/admin-kaibee-dev-fest-2023"
+                element={<AdminPage />}
+              />
+              <Route path="/reset-email" element={<ResetEmailPage />} />
             </Routes>
           </div>
         </GameContextProvider>

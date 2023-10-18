@@ -8,6 +8,7 @@ const AdminContainer = styled.div`
   height: 100dvh;
   flex-direction: column;
   gap: 1rem;
+  margin: 0 10px;
 `;
 
 const AdminLayout = ({ children }: PropsWithChildren) => {
