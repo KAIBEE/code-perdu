@@ -66,7 +66,7 @@ function Validation() {
             ...register("code"),
           }}
         />
-        {isInvalidCode && <p>Code invalide !</p>}
+        {isInvalidCode && <p className="error">Code invalide !</p>}
         <ContinueButton>Continuer</ContinueButton>
       </Response>
     </form>
