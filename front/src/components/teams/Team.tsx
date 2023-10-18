@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import previousImage from "@assets/left-arrow.png";
 import { Title } from "@components/styled/Title";
 import { ContinueButton } from "@components/styled/ContinueButton";

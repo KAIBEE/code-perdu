@@ -14,10 +14,11 @@ import { useState } from "react";
 import AdminPage from "./components/admin/AdminPage";
 import { EVENT_ID } from "./constants";
 import ErrorScreen from "./components/error/ErrorScreen";
+import { Talent } from "@/types.ts";
 
 function App() {
   const [participantId, setParticipantId] = useState<string>();
-  const [chosenTalent, setChosenTalent] = useState<string>();
+  const [chosenTalent, setChosenTalent] = useState<Talent | null>(null);
 
   const { data: game, isLoading } = useSWR(`/event/${EVENT_ID}`, fetcher);
 
@@ -38,7 +39,7 @@ function App() {
             participantId,
             setParticipantId,
             chosenTalent,
-            setChosenTalent
+            setChosenTalent,
           }}
         >
           <GlobalStyle />
