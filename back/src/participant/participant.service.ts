@@ -17,6 +17,7 @@ export class ParticipantService {
   async save(
     participantRequest: ParticipantCreationRequest,
   ): Promise<ParticipantDto> {
+    participantRequest.email = participantRequest.email.trim().toLowerCase();
     const existing = await this.participantModel
       .findOne({
         email: participantRequest.email,
@@ -49,7 +50,7 @@ export class ParticipantService {
       .findByIdAndUpdate(id, { email })
       .exec();
     if (updatedParticipant) {
-      sendMail(
+      await sendMail(
         updatedParticipant.email,
         "Code de validation",
         updatedParticipant.code,
