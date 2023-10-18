@@ -6,11 +6,11 @@ function End() {
     <>
       <Title>
         Ton inscription est bien prise en compte !<br />
-        On te donne RDV sur le stand à l'heure communiquée pour le résultat
+        Tirage au sort vendredi à 16h
       </Title>
       <AltText>
-        N'hésite pas à ramener tes ami(e)s pour qu'ils/elles tentent leurs
-        chances de gagner !
+        N'hésite pas à ramener tes ami(e)s pour qu'ils/elles tentent leur chance
+        !
       </AltText>
     </>
   );
