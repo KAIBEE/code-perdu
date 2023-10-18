@@ -1,3 +1,3 @@
 #!/bin/sh
-node /api/main.js &
+pm2 start /api/main.js
 nginx -g 'daemon off;'

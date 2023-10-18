@@ -9,7 +9,8 @@ COPY back ./
 RUN npm install && npm run build
 
 FROM nginx:alpine
-RUN apk add --no-cache nodejs && mkdir -p /etc/nginx/logs && chown -R nginx: /var/cache/nginx /etc/nginx/
+RUN apk add --no-cache nodejs && apk add --no-cache npm && mkdir -p /etc/nginx/logs && chown -R nginx: /var/cache/nginx /etc/nginx/
+RUN npm install pm2@latest -g
 COPY --chown=nginx:nginx --from=builder-frontend /usr/src/app/dist /usr/share/nginx/html
 COPY --chown=nginx:nginx --from=builder-backend /usr/src/app/dist /api
 COPY --chown=nginx:nginx --from=builder-backend /usr/src/app/node_modules /api/node_modules
@@ -20,7 +21,6 @@ ENV NODE_ENV production
 ENV API_PREFIX=/api
 ENV MAIL_USER=codeperdu@kaibee.fr
 ENV MAIL_PASSWORD=LostCode2023!?
-
 
 USER nginx
 EXPOSE 80
