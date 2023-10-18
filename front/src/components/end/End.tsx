@@ -5,12 +5,12 @@ function End() {
   return (
     <>
       <Title>
-        Ton inscription est bien prise en compte !<br /> Rappel du RDV tirage au
-        sort
+        Ton inscription est bien prise en compte !<br />
+        On te donne RDV sur le stand à l'heure communiquée pour le résultat
       </Title>
       <AltText>
-        Tu peux recommencer avec une autre maison pour augmenter tes chances de
-        gagner et te mesurer aux autres énigmes si tu le souhaites !
+        N'hésite pas à ramener tes ami(e)s pour qu'ils/elles tentent leurs
+        chances de gagner !
       </AltText>
     </>
   );
