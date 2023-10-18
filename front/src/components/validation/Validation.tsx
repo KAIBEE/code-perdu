@@ -17,7 +17,7 @@ const validationSchema = yup.object({
 
 function Validation() {
   const navigate = useNavigate();
-  const { register, handleSubmit, getValues } = useForm({
+  const { register, handleSubmit, getValues, reset } = useForm({
     resolver: yupResolver(validationSchema),
   });
 
@@ -58,6 +58,13 @@ function Validation() {
           mail (il te servira pour le tirage au sort)
         </p>
       </Content>
+      <ContinueButton
+        onClick={() => {
+          navigate("/reset-email");
+        }}
+      >
+        Tu t'es trompé d'email ?
+      </ContinueButton>
       <Response>
         <CustomLabelInput
           id={"code"}
@@ -65,6 +72,7 @@ function Validation() {
           inputProps={{
             ...register("code"),
           }}
+          resetValue={() => reset({ code: "" })}
         />
         {isInvalidCode && <p className="error">Code invalide !</p>}
         <ContinueButton>Continuer</ContinueButton>

@@ -8,7 +8,7 @@ import infoLogo from "@assets/info.svg";
 import { CustomLabelInput } from "@components/styled/CustomInput.tsx";
 import { ContinueButton } from "@components/styled/ContinueButton.ts";
 import styled from "styled-components";
-import { createParticipant } from "@/helpers/api";
+import { createAndSendEmailParticipant } from "@/helpers/api";
 import { GameContext } from "@/context/GameContext";
 import { useContext } from "react";
 import { ImageContainer } from "../styled/ImageContainer";
@@ -58,7 +58,7 @@ function Home() {
   const { setParticipantId } = useContext(GameContext);
 
   const onSubmit = ({ email }: { email: string }) => {
-    createParticipant(email).then((participantId) => {
+    createAndSendEmailParticipant(email).then((participantId) => {
       setParticipantId(participantId);
       return navigate("/talent", {
         state: {

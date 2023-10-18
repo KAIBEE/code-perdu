@@ -23,13 +23,22 @@ export class ParticipantService {
       })
       .exec();
     if (existing) {
+      await sendMail(
+        existing.email,
+        "Kaibee - Code de validation",
+        `Te revoila ! Pour rappel, ton code de validation est : ${existing.code}`,
+      );
       return existing;
     }
     const participant = new this.participantModel(participantRequest);
     participant.code = stringToHash(participant.email);
     const savedParticipant = participant.save();
 
-    await sendMail(participant.email, "Code de validation", participant.code);
+    await sendMail(
+      participant.email,
+      "Kaibee - Code de validation",
+      `Voici ton code de validation : ${participant.code}`,
+    );
 
     return savedParticipant;
   }
@@ -49,10 +58,10 @@ export class ParticipantService {
       .findByIdAndUpdate(id, { email })
       .exec();
     if (updatedParticipant) {
-      sendMail(
+      await sendMail(
         updatedParticipant.email,
-        "Code de validation",
-        updatedParticipant.code,
+        "Kaibee - Code de validation",
+        `Voici ton code de validation : ${updatedParticipant.code}`,
       );
     }
   }
