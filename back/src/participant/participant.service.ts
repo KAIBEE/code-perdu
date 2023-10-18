@@ -17,29 +17,29 @@ export class ParticipantService {
   async save(
     participantRequest: ParticipantCreationRequest,
   ): Promise<ParticipantDto> {
-      participantRequest.email = participantRequest.email.trim().toLowerCase();
-      const existing = await this.participantModel
+    participantRequest.email = participantRequest.email.trim().toLowerCase();
+    const existing = await this.participantModel
       .findOne({
         email: participantRequest.email,
       })
       .exec();
     if (existing) {
-        await sendMail(
-            existing.email,
-            "Kaibee - Code de validation",
-            `Te revoila ! Pour rappel, ton code de validation est : ${existing.code}`,
-        );
+      await sendMail(
+        existing.email,
+        "Kaibee - Code de validation",
+        `Te revoila ! Pour rappel, ton code de validation est : ${existing.code}`,
+      );
       return existing;
     }
     const participant = new this.participantModel(participantRequest);
     participant.code = stringToHash(participant.email);
     const savedParticipant = participant.save();
 
-      await sendMail(
-          participant.email,
-          "Kaibee - Code de validation",
-          `Voici ton code de validation : ${participant.code}`,
-      );
+    await sendMail(
+      participant.email,
+      "Kaibee - Code de validation",
+      `Voici ton code de validation : ${participant.code}`,
+    );
     return savedParticipant;
   }
 
@@ -55,14 +55,14 @@ export class ParticipantService {
 
   async updateEmail(id: string, email: string) {
     const updatedParticipant = await this.participantModel
-      .findByIdAndUpdate(id, { email })
+      .findByIdAndUpdate(id, { email, code: stringToHash(email) })
       .exec();
     if (updatedParticipant) {
-        await sendMail(
-            updatedParticipant.email,
-            "Kaibee - Code de validation",
-            `Voici ton code de validation : ${updatedParticipant.code}`,
-        );
+      await sendMail(
+        updatedParticipant.email,
+        "Kaibee - Code de validation",
+        `Voici ton code de validation : ${updatedParticipant.code}`,
+      );
     }
   }
 
