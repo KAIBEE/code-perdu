@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const AdminContainer = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100dvh;
   flex-direction: column;
   gap: 1rem;
 `;

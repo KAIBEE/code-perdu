@@ -5,5 +5,5 @@ export const ContinueButton = styled.button`
   background-color: rgb(115, 179, 177);
   border-radius: 50px;
   font-weight: bold;
-  margin: 2vh 0;
+  margin: 2dvh 0;
 `;

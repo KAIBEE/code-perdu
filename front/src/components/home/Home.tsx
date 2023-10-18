@@ -36,12 +36,12 @@ const Warning = styled.p`
   flex-shrink: 0;
   color: #708c91;
   font-size: 13px;
-  line-height: 2vh;
+  line-height: 2dvh;
 `;
 
 const Image = styled.img`
-  max-height: 42.5vh
-`
+  max-height: 42.5dvh;
+`;
 
 function Home() {
   const {
@@ -71,7 +71,7 @@ function Home() {
   return (
     <>
       <header>
-        <BigTitle $glowEffect padding={"2.5vh 0px 1vh 0px"}>
+        <BigTitle $glowEffect padding={"2.5dvh 0px 1dvh 0px"}>
           Bienvenue <br />
           apprenti sorcier !
         </BigTitle>
@@ -98,12 +98,12 @@ function Home() {
         />
         <div
           style={{
-            marginTop: "2.5vh",
+            marginTop: "2.5dvh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            gap: "3vh",
+            gap: "3dvh",
           }}
         >
           <ContinueButton type="submit">Continuer</ContinueButton>

@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #root {
-    height: 100vh;
+    height: 100dvh;
     background: var(--Linear-background, linear-gradient(180deg, #261635 0%, #11141A 100%));
     overflow: hidden;
   }

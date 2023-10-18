@@ -11,7 +11,7 @@ const ResetButton = styled.button`
     fill: #f2b8b5;
   }
   & > svg {
-    height: 3vh;
+    height: 3dvh;
     fill: inherit;
   }
 `;
