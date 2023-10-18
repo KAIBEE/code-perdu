@@ -17,32 +17,29 @@ export class ParticipantService {
   async save(
     participantRequest: ParticipantCreationRequest,
   ): Promise<ParticipantDto> {
-    const existing = await this.participantModel
+      participantRequest.email = participantRequest.email.trim().toLowerCase();
+      const existing = await this.participantModel
       .findOne({
         email: participantRequest.email,
       })
       .exec();
-    console.log(existing);
     if (existing) {
-      await sendMail(
-        existing.email,
-        "Kaibee - Code de validation",
-        `Te revoila ! Pour rappel, ton code de validation est : ${existing.code}`,
-      );
+        await sendMail(
+            existing.email,
+            "Kaibee - Code de validation",
+            `Te revoila ! Pour rappel, ton code de validation est : ${existing.code}`,
+        );
       return existing;
     }
-
     const participant = new this.participantModel(participantRequest);
     participant.code = stringToHash(participant.email);
-    console.log(participant);
     const savedParticipant = participant.save();
 
-    await sendMail(
-      participant.email,
-      "Kaibee - Code de validation",
-      `Voici ton code de validation : ${participant.code}`,
-    );
-
+      await sendMail(
+          participant.email,
+          "Kaibee - Code de validation",
+          `Voici ton code de validation : ${participant.code}`,
+      );
     return savedParticipant;
   }
 
@@ -61,13 +58,11 @@ export class ParticipantService {
       .findByIdAndUpdate(id, { email })
       .exec();
     if (updatedParticipant) {
-      updatedParticipant.code = stringToHash(updatedParticipant.email);
-      await updatedParticipant.save();
-      await sendMail(
-        updatedParticipant.email,
-        "Kaibee - Code de validation",
-        `Voici ton code de validation : ${updatedParticipant.code}`,
-      );
+        await sendMail(
+            updatedParticipant.email,
+            "Kaibee - Code de validation",
+            `Voici ton code de validation : ${updatedParticipant.code}`,
+        );
     }
   }
 
