@@ -27,6 +27,7 @@ function ErrorScreen() {
 
   const { teams } = game;
   const { name } = teams[chosenTalent];
+  const imageError = new URL(`../../assets/${name}3.png`, import.meta.url).href;
 
   const {
     stageId,
@@ -51,16 +52,20 @@ function ErrorScreen() {
 
   const ErrorImage = styled.img`
     width: 100%;
-  `
-  const errorMessages = ['Adava Kedavra...', 'Doloris...', 'Impero...']; // TODO mettre dans la BDD;
+  `;
+  const errorMessages = ["Adava Kedavra...", "Doloris...", "Impero..."]; // TODO mettre dans la BDD;
 
   return (
     <>
       <div className="view-with-button">
         <Content>
-          <Markdown>{errorMessages[Math.floor(Math.random() * errorMessages.length)]}</Markdown>
+          <Markdown>
+            {errorMessages[Math.floor(Math.random() * errorMessages.length)]}
+          </Markdown>
         </Content>
-        <ImageContainer><ErrorImage src={`/src/assets/${name}3.png`} alt={"Lazy image"} /></ImageContainer>
+        <ImageContainer>
+          <ErrorImage src={imageError} alt={"Lazy image"} />
+        </ImageContainer>
         <ContinueButton type="submit" onClick={navigateStage}>
           Je retente ma chance !
         </ContinueButton>

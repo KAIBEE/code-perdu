@@ -74,14 +74,19 @@ function ScenarioStage() {
     });
   };
 
+  const loadedImage = image
+    ? new URL(`../../assets/${image}`, import.meta.url).href
+    : null;
+
   return (
     <>
       <div className="view-with-button">
         <Content>
           <Markdown>{content}</Markdown>
         </Content>
-        {image && <img src={`/src/assets/${image}`} alt={"Lazy image"} width={200}
-            height={233} />}
+        {loadedImage && (
+          <img src={loadedImage} alt={"Lazy image"} width={200} height={233} />
+        )}
         <Response>
           {type === "RESPONSE_INPUT" && (
             <form onSubmit={handleSubmit(navigateNextStage)}>
