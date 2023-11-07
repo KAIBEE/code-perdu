@@ -51,7 +51,7 @@ function Validation() {
           oubliés, te voilà en possession du Code perdu !
         </p>
         <p>
-          Tu es maintenant digne de tenter de remporter un voyage à Poudlard.
+          Tu es maintenant digne de tenter de remporter notre cadeau..
         </p>
         <p>
           Pour cela, finalise ton inscription en indiquant ton code reçu par
