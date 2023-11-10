@@ -6,5 +6,5 @@ export const Content = styled.div`
   font-family: Crimson Text;
   font-size: 1.5em;
   font-weight: 400;
-  line-height: 32px;
+  line-height: 28px;
 `;
